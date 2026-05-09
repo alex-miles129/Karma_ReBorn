@@ -15,6 +15,8 @@ import { getDOCApplications } from "./handlers/doc";
 import { getAdminAccessWithRoles, canAccessSection } from "@/config/admins";
 import { sendFormResponseToDiscord } from "@/lib/webhook";
 
+export const dynamic = 'force-dynamic';
+
 // Define column positions for each application type
 const COLUMN_POSITIONS = {
   whitelist: {

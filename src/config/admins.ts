@@ -135,6 +135,9 @@ export const getAdminAccessWithRoles = async (session: Session | null): Promise<
           designation: userDesignations
         };
       }
+    } else {
+      const errText = await response.text();
+      console.error(`Discord API Error in getAdminAccessWithRoles: ${response.status} ${errText}`);
     }
   } catch (error) {
     console.error('Error fetching Discord roles for admin access:', error);

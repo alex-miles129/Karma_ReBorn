@@ -1,10 +1,11 @@
 import fs from 'fs';
 import path from 'path';
+import { Session } from 'next-auth';
 
 export interface AdminUser {
   email: string;
   discordId: string;
-  designation: string | 'all';
+  designation: string | string[] | 'all';
 }
 
 // List of valid designations
@@ -29,6 +30,14 @@ export const adminUsers: AdminUser[] = [
     designation: 'all'  // This admin has access to EMS sections
   }
 ];
+
+const ROLE_DESIGNATIONS: Record<string, Designation> = {
+  '1489608368166539315': 'whitelist',
+  '1489608395265675374': 'doj',
+  '1489608397815812206': 'police',
+  '1489608399552254043': 'ems',
+  '1502720026417958972': 'doc'
+};
 
 // Function to read admins from file
 const getFileAdmins = (): AdminUser[] => {
@@ -64,6 +73,7 @@ export const isValidDesignation = (designation: string): boolean => {
 };
 
 export const getAdminAccess = (email: string): AdminUser | undefined => {
+  if (!email) return undefined;
   // Convert email to lowercase for case-insensitive comparison
   const normalizedEmail = email.toLowerCase();
   
@@ -80,10 +90,63 @@ export const getAdminAccess = (email: string): AdminUser | undefined => {
   );
 };
 
-export const canAccessSection = (admin: AdminUser, section: string): boolean => {
-  if (!isValidDesignation(admin.designation) || !isValidDesignation(section)) {
-    return false;
+export const getAdminAccessWithRoles = async (session: Session | null): Promise<AdminUser | undefined> => {
+  if (!session?.user) return undefined;
+
+  // Check email-based access first
+  if (session.user.email) {
+    const emailAccess = getAdminAccess(session.user.email);
+    if (emailAccess) return emailAccess;
   }
+
+  // Check role-based access
+  const userId = (session.user as any).id;
+  if (!userId) return undefined;
+
+  try {
+    const DISCORD_SERVER_ID = process.env.DISCORD_SERVER_ID;
+    const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN;
+
+    if (!DISCORD_SERVER_ID || !DISCORD_BOT_TOKEN) return undefined;
+
+    const response = await fetch(
+      `https://discord.com/api/guilds/${DISCORD_SERVER_ID}/members/${userId}`,
+      {
+        headers: { Authorization: `Bot ${DISCORD_BOT_TOKEN}` },
+        next: { revalidate: 60 } // Cache for 60 seconds
+      }
+    );
+
+    if (response.ok) {
+      const memberData = await response.json();
+      const roles: string[] = memberData.roles || [];
+      const userDesignations: Designation[] = [];
+
+      for (const roleId of roles) {
+        if (ROLE_DESIGNATIONS[roleId]) {
+          userDesignations.push(ROLE_DESIGNATIONS[roleId]);
+        }
+      }
+
+      if (userDesignations.length > 0) {
+        return {
+          email: session.user.email || '',
+          discordId: userId,
+          designation: userDesignations
+        };
+      }
+    }
+  } catch (error) {
+    console.error('Error fetching Discord roles for admin access:', error);
+  }
+
+  return undefined;
+};
+
+export const canAccessSection = (admin: AdminUser, section: string): boolean => {
   if (admin.designation === 'all') return true;
+  if (Array.isArray(admin.designation)) {
+    return admin.designation.includes(section as Designation);
+  }
   return admin.designation === section;
 }; 

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { getAdminAccess, isValidDesignation } from '@/config/admins';
+import { getAdminAccessWithRoles, isValidDesignation } from '@/config/admins';
 
 export async function GET() {
   try {
@@ -22,7 +22,7 @@ export async function GET() {
       }, { status: 401 });
     }
 
-    const adminAccess = getAdminAccess(session.user.email);
+    const adminAccess = await getAdminAccessWithRoles(session);
     console.log('Admin access check:', {
       email: session.user.email,
       adminFound: !!adminAccess,
@@ -33,11 +33,13 @@ export async function GET() {
       return NextResponse.json({ 
         isAdmin: false, 
         error: 'Not authorized',
-        details: 'User not found in admin list'
+        details: 'User not found in admin list and lacks required roles'
       }, { status: 403 });
     }
 
-    if (!isValidDesignation(adminAccess.designation)) {
+    // Since we now allow multiple designations, we don't strictly reject if it's an array of valid ones
+    // We already validate when constructing the array.
+    if (!Array.isArray(adminAccess.designation) && adminAccess.designation !== 'all' && !isValidDesignation(adminAccess.designation)) {
       return NextResponse.json({ 
         isAdmin: false, 
         error: 'Invalid designation',

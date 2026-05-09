@@ -19,11 +19,12 @@ export const metadata: Metadata = {
 
 const DISCORD_SERVER_ID = process.env.DISCORD_SERVER_ID as string;
 const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN as string;
-const REQUIRED_ROLE_ID = "1443336304040349927";
-const WHITELIST_ROLE_ID = "1443336304040349927";
+const REQUIRED_ROLE_ID = "1489608409061003505"; // Allowlisted
+const WHITELIST_ROLE_ID = "1489608409061003505"; // Allowlisted
 
 async function checkUserHasRole(userId: string, roleId: string): Promise<boolean> {
   try {
+    console.log(`Checking role ${roleId} for user ${userId} in server ${DISCORD_SERVER_ID}`);
     const memberResponse = await fetch(
       `https://discord.com/api/guilds/${DISCORD_SERVER_ID}/members/${userId}`,
       {
@@ -33,11 +34,16 @@ async function checkUserHasRole(userId: string, roleId: string): Promise<boolean
       }
     );
 
+    console.log(`Discord API status: ${memberResponse.status}`);
+    
     if (memberResponse.status === 404 || !memberResponse.ok) {
+      const errData = await memberResponse.text();
+      console.log(`Discord API error: ${errData}`);
       return false;
     }
 
     const memberData = await memberResponse.json();
+    console.log(`User roles: ${JSON.stringify(memberData.roles)}`);
     return memberData.roles?.includes(roleId) || false;
   } catch (error) {
     console.error('Error checking Discord role:', error);
@@ -121,11 +127,13 @@ export default async function ApplicationsPage() {
             <h1 className="text-4xl font-bold mb-8">Applications</h1>
             
             {/* Note about whitelist requirement */}
-            <div className="mb-6 p-4 bg-purple-600/10 rounded-lg border border-purple-600/20">
-              <p className="text-sm text-foreground/70">
-                Note: To Gain Access To All Forms, Get Whitelisted First !!
-              </p>
-            </div>
+            {!hasWhitelistRole && (
+              <div className="mb-6 p-4 bg-purple-600/10 rounded-lg border border-purple-600/20">
+                <p className="text-sm text-foreground/70">
+                  Note: To Gain Access To All Forms, Get Whitelisted First !!
+                </p>
+              </div>
+            )}
             
             <div className="space-y-6">
               {/* Whitelisting Application Card */}

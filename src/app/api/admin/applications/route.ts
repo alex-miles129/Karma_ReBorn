@@ -12,7 +12,7 @@ import { getEMSApplications } from "./handlers/ems";
 import { getPoliceApplications } from "./handlers/police";
 import { getDOJApplications } from "./handlers/doj";
 import { getDOCApplications } from "./handlers/doc";
-import { getAdminAccess, canAccessSection } from "@/config/admins";
+import { getAdminAccessWithRoles, canAccessSection } from "@/config/admins";
 import { sendFormResponseToDiscord } from "@/lib/webhook";
 
 // Define column positions for each application type
@@ -56,7 +56,7 @@ export async function GET() {
       );
     }
 
-    const adminAccess = getAdminAccess(session.user.email);
+    const adminAccess = await getAdminAccessWithRoles(session);
     if (!adminAccess) {
       console.log('Unauthorized: Not an admin');
       return NextResponse.json(
@@ -132,7 +132,7 @@ export async function PUT(request: Request) {
       );
     }
 
-    const adminAccess = getAdminAccess(session.user.email);
+    const adminAccess = await getAdminAccessWithRoles(session);
     if (!adminAccess) {
       return NextResponse.json(
         { success: false, error: "You do not have permission to access this page" },

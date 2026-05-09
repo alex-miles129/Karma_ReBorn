@@ -125,7 +125,11 @@ export default function AdminPage() {
             });
             // Set initial section if user has limited access
             if (data.designation !== 'all') {
-              setSelectedSection(data.designation);
+              if (Array.isArray(data.designation) && data.designation.length > 0) {
+                setSelectedSection(data.designation[0]);
+              } else if (typeof data.designation === 'string') {
+                setSelectedSection(data.designation);
+              }
             }
             await fetchApplications();
           } else {
@@ -209,7 +213,8 @@ export default function AdminPage() {
 
   // Filter sections based on admin designation
   const visibleSections = applicationSections.filter(section => 
-    adminAccess?.designation === 'all' || adminAccess?.designation === section.id
+    adminAccess?.designation === 'all' || 
+    (Array.isArray(adminAccess?.designation) ? adminAccess.designation.includes(section.id) : adminAccess?.designation === section.id)
   );
 
   if (status === "loading" || isLoading) {
@@ -257,7 +262,11 @@ export default function AdminPage() {
           <h1 className="text-lg font-bold">Admin Panel</h1>
           {adminAccess && (
             <div className="text-xs text-muted-foreground">
-              {adminAccess.designation === 'all' ? 'Full Access' : `${adminAccess.designation.charAt(0).toUpperCase() + adminAccess.designation.slice(1)} Access`}
+              {adminAccess.designation === 'all' 
+                ? 'Full Access' 
+                : Array.isArray(adminAccess.designation) 
+                  ? `${adminAccess.designation.map(d => d.charAt(0).toUpperCase() + d.slice(1)).join(', ')} Access`
+                  : `${adminAccess.designation.charAt(0).toUpperCase() + adminAccess.designation.slice(1)} Access`}
             </div>
           )}
         </div>

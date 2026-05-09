@@ -4,7 +4,7 @@ import { authOptions } from "@/lib/auth";
 
 const DISCORD_SERVER_ID = process.env.DISCORD_SERVER_ID as string;
 const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN as string;
-const REQUIRED_ROLE_ID = "1443336304040349927";
+const REQUIRED_ROLE_ID = "1489608409061003505";
 
 // Helper function to handle rate limits with retry
 async function fetchWithRateLimitHandling(

@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Protocol: Zero',
-  description: 'Welcome to the Protocol: Zero Community'
+  title: 'Karma ReBorn',
+  description: 'Welcome to the Karma ReBorn Community'
 };
 
 export default function RootLayout({

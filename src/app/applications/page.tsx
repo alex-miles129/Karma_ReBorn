@@ -13,8 +13,8 @@ import { applicationForms } from "@/config/applicationForms"
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Applications | Protocol: Zero',
-  description: 'Submit applications for whitelist and department positions in Protocol: Zero',
+  title: 'Applications | Karma ReBorn',
+  description: 'Submit applications for whitelist and department positions in Karma ReBorn',
 };
 
 const DISCORD_SERVER_ID = process.env.DISCORD_SERVER_ID as string;

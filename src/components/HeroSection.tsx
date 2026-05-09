@@ -22,9 +22,19 @@ export function HeroSection() {
           className="absolute inset-0 w-full h-full bg-cover bg-center brightness-75"
           style={{
             backgroundImage:
-              "url('https://files.fivemerr.com/images/a263eed9-088f-4cf7-b47b-efd4f327fd05.png')",
+              "url('https://r2.fivemanage.com/fIzwGUYZR5rnjUFPnGj3B/ChatGPTImageMar11202609_39_13PM.png')",
           }}
         />
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover brightness-75"
+        >
+          <source src="https://files.catbox.moe/fc733s.mp4" type="video/mp4" />
+        </video>
         {/* Overlay: keep dark focus on left, no red tint on right side */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/80 to-transparent" />
       </div>
@@ -38,7 +48,7 @@ export function HeroSection() {
               Welcome to
             </p>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-foreground via-[#0c0c18] to-foreground">
-              Protocol: Zero
+              Karma ReBorn
             </h1>
             <p className="text-sm sm:text-base md:text-lg text-foreground/80 max-w-lg">
               A high-intensity survival roleplay experience set in a collapsing city. Forge alliances, make impossible choices,

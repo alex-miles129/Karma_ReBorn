@@ -1,11 +1,11 @@
-# **App Name**: Protocol: Zero Hub
+# **App Name**: Karma ReBorn Hub
 
 ## Core Features:
 
-- Logo Display: Display the Protocol: Zero logo prominently in the header.
+- Logo Display: Display the Karma ReBorn logo prominently in the header.
 - Navigation Menu: Implement a clear and consistent navigation menu with 'Home', 'About', 'Rules', 'Contact', 'Store Showcase' links.
 - Discord Integration Buttons: Add 'Join Discord' and 'Login with Discord' buttons with clear calls to action.
-- Video Background: Implement a looping video background with a blur effect. Overlay with 'Welcome to' and 'Protocol: Zero' text.
+- Video Background: Implement a looping video background with a blur effect. Overlay with 'Welcome to' and 'Karma ReBorn' text.
 - Play Now Button: Add a 'Play Now' button that triggers a pop-up window with 'Join Discord' and 'Join FiveM' options.
 - Homepage Section: Include a section above the video with text and a 'Play Now' button on the left, and an image on the right.
 - Progress Scrollbar: Implement a non-clickable progress bar that updates as the user scrolls down the page.

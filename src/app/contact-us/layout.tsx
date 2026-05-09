@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Protocol: Zero',
-  description: 'Get in touch with Protocol: Zero team',
+  title: 'Contact Us | Karma ReBorn',
+  description: 'Get in touch with Karma ReBorn team',
 };
 
 export default function ContactLayout({

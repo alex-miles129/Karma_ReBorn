@@ -4,8 +4,8 @@ import { ScrollProgressBar } from '@/components/ScrollProgressBar';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Rules | Protocol: Zero',
-  description: 'Server rules and guidelines for Protocol: Zero',
+  title: 'Rules | Karma ReBorn',
+  description: 'Server rules and guidelines for Karma ReBorn',
 };
 
 export default function RulesPage() {

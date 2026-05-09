@@ -5,8 +5,8 @@ import { ScrollProgressBar } from '@/components/ScrollProgressBar';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'How It Works | Protocol: Zero',
-  description: 'Learn how Protocol: Zero works with tailor-made scripts, blockchain technology, and robust infrastructure.',
+  title: 'How It Works | Karma ReBorn',
+  description: 'Learn how Karma ReBorn works with tailor-made scripts, blockchain technology, and robust infrastructure.',
 };
 
 export default function HowItWorksPage() {

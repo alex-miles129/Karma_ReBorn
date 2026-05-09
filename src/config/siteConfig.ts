@@ -37,7 +37,7 @@ export const teamMembers: TeamMember[] = [
   },
 ];
 
-export const siteName = "Protocol: Zero";
+export const siteName = "Karma ReBorn";
 
 export const discordInviteLink = "https://discord.gg/ydtT9UzQUz";
 export const fivemJoinLink = "fivem://connect/pmgjr8"; // Replace with actual FiveM server IP or link

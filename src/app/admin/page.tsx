@@ -403,7 +403,7 @@ export default function AdminPage() {
       <div className="border-t flex-shrink-0 py-3">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-[10px] text-center text-muted-foreground">
-            © {new Date().getFullYear()} Protocol: Zero. All rights reserved.
+            © {new Date().getFullYear()} Karma ReBorn. All rights reserved.
           </p>
         </div>
       </div>

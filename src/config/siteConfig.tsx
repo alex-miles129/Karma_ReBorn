@@ -39,7 +39,7 @@ export const teamMembers: TeamMember[] = [
   
 ];
 
-export const siteName = "Protocol: Zero";
+export const siteName = "Karma ReBorn";
 
 export const discordInviteLink = "https://discord.gg/ydtT9UzQUz"; // General Discord invite
 export const fivemJoinLink = "fivem://connect/pmgjr8"; // Replace with actual FiveM server IP or link
@@ -78,8 +78,8 @@ export const Icons = {
   heart: Heart,
   logo: () => (
     <Image
-      src="https://files.fivemerr.com/images/39e7f953-1e9f-4767-9387-2f0fb46fe926.png"
-      alt="Protocol: Zero Logo"
+      src="/logo.png"
+      alt="Karma ReBorn Logo"
       width={48}
       height={48}
       unoptimized

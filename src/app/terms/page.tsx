@@ -2,8 +2,8 @@ import { PageLayout } from '@/components/PageLayout';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms and Conditions | Protocol: Zero',
-  description: 'Terms and Conditions for Protocol: Zero',
+  title: 'Terms and Conditions | Karma ReBorn',
+  description: 'Terms and Conditions for Karma ReBorn',
 };
 
 export default function TermsPage() {
@@ -19,7 +19,7 @@ export default function TermsPage() {
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold">1. Acceptance of Terms</h2>
             <p>
-              By accessing and using Protocol: Zero services, including but not limited to our website, 
+              By accessing and using Karma ReBorn services, including but not limited to our website, 
               Discord server, and FiveM server, you agree to be bound by these Terms and Conditions. 
               If you do not agree with any part of these terms, you must not use our services.
             </p>
@@ -28,7 +28,7 @@ export default function TermsPage() {
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold">2. Service Description</h2>
             <p>
-              Protocol: Zero provides a roleplay gaming experience on the FiveM platform. We offer 
+              Karma ReBorn provides a roleplay gaming experience on the FiveM platform. We offer 
               various services including but not limited to in-game content, Discord community access, 
               and premium memberships. All services are provided "as is" without warranties of any kind.
             </p>
@@ -68,7 +68,7 @@ export default function TermsPage() {
             <h2 className="text-2xl font-semibold">6. Intellectual Property</h2>
             <p>
               All content, including but not limited to logos, designs, scripts, and game modifications, 
-              are the property of Protocol: Zero. You may not reproduce, distribute, or create derivative 
+              are the property of Karma ReBorn. You may not reproduce, distribute, or create derivative 
               works without explicit written permission.
             </p>
           </section>
@@ -85,7 +85,7 @@ export default function TermsPage() {
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold">8. Limitation of Liability</h2>
             <p>
-              Protocol: Zero shall not be liable for any indirect, incidental, special, or consequential 
+              Karma ReBorn shall not be liable for any indirect, incidental, special, or consequential 
               damages arising from your use of our services. We do not guarantee uninterrupted or error-free 
               service.
             </p>

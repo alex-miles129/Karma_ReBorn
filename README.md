@@ -1,10 +1,10 @@
-# 🕵️‍♂️ Protocol: Zero Roleplay
+# 🕵️‍♂️ Karma ReBorn Roleplay
 
-Welcome to **Protocol: Zero** – the ultimate immersive experience where you live the life of a criminal, cop, or citizen in a gritty, fictional metropolis. Whether you're rising through the ranks of the underworld or upholding the law, Protocol: Zero offers dynamic stories, real-time roleplay, and a thriving online community.
+Welcome to **Karma ReBorn** – the ultimate immersive experience where you live the life of a criminal, cop, or citizen in a gritty, fictional metropolis. Whether you're rising through the ranks of the underworld or upholding the law, Karma ReBorn offers dynamic stories, real-time roleplay, and a thriving online community.
 
 ## 🌆 About the Project
 
-Protocol: Zero is a web-based platform designed for roleplay enthusiasts who crave immersive storytelling and character development. Set in a lawless city filled with opportunity and danger, players can:
+Karma ReBorn is a web-based platform designed for roleplay enthusiasts who crave immersive storytelling and character development. Set in a lawless city filled with opportunity and danger, players can:
 
 - Create and customize their characters
 - Join factions (gangs, police, businesses, etc.)

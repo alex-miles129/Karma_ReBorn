@@ -73,7 +73,7 @@ export interface DOJApplication extends BaseApplication {
   desiredRole: string;     // Desired DOJ Role
   legalEducation: string;  // Legal Education (IC)
   caseHistory: string;     // Case History (optional)
-  joinReason: string;      // Why do you want to join DOJ in Protocol: Zero?
+  joinReason: string;      // Why do you want to join DOJ in Karma ReBorn?
   
   // Base fields from BaseApplication are already included:
   // id, type, submittedAt, status, reviewedBy, reviewedAt, email

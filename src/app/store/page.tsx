@@ -60,7 +60,7 @@ export default function StorePage() {
             Support the Server
           </h1>
             <p className="text-foreground/70 max-w-2xl">
-            Support Protocol: Zero and enhance your gameplay experience with exclusive perks and features.
+            Support Karma ReBorn and enhance your gameplay experience with exclusive perks and features.
             All purchases help us maintain and improve the server.
           </p>
           </div>

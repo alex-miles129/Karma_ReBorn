@@ -188,7 +188,7 @@ export function ApplicationDetails({ application }: ApplicationDetailsProps) {
               description="Notable cases, roles, outcomes, precedents set"
             />
             <Field 
-              label="Why do you want to join DOJ in Protocol: Zero?" 
+              label="Why do you want to join DOJ in Karma ReBorn?" 
               value={application.joinReason} 
             />
           </>

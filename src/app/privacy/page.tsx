@@ -2,8 +2,8 @@ import { PageLayout } from '@/components/PageLayout';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Protocol: Zero',
-  description: 'Privacy Policy for Protocol: Zero',
+  title: 'Privacy Policy | Karma ReBorn',
+  description: 'Privacy Policy for Karma ReBorn',
 };
 
 export default function PrivacyPage() {

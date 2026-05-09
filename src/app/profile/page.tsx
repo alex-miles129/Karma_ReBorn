@@ -21,6 +21,8 @@ export default function ProfilePage() {
   const router = useRouter();
 
   useEffect(() => {
+    let isMounted = true;
+
     const checkServerMembership = async () => {
       if (session?.user) {
         try {
@@ -36,11 +38,11 @@ export default function ProfilePage() {
     const checkAdminStatus = async () => {
       if (session?.user) {
         try {
-          console.log("Profile - Checking admin status");
-          const response = await fetch('/api/admin/check');
+          const response = await fetch('/api/admin/check', { cache: 'no-store' });
           const data = await response.json();
-          console.log("Profile - Admin check response:", data);
-          setIsAdmin(data.isAdmin);
+          if (isMounted) {
+            setIsAdmin(data.isAdmin);
+          }
         } catch (error) {
           console.error('Error checking admin status:', error);
         }
@@ -49,6 +51,13 @@ export default function ProfilePage() {
 
     checkServerMembership();
     checkAdminStatus();
+
+    const interval = setInterval(checkAdminStatus, 5000);
+
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
   }, [session]);
 
   if (status === "loading") {

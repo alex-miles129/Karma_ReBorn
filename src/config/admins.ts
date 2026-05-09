@@ -113,7 +113,7 @@ export const getAdminAccessWithRoles = async (session: Session | null): Promise<
       `https://discord.com/api/guilds/${DISCORD_SERVER_ID}/members/${userId}`,
       {
         headers: { Authorization: `Bot ${DISCORD_BOT_TOKEN}` },
-        next: { revalidate: 60 } // Cache for 60 seconds
+        cache: 'no-store'
       }
     );
 

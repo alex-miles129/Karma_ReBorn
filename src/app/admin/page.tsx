@@ -112,13 +112,19 @@ export default function AdminPage() {
   };
 
   useEffect(() => {
+    let isMounted = true;
+    let initialFetchDone = false;
+
     const checkAdminStatus = async () => {
       if (session?.user) {
         try {
-          const response = await fetch('/api/admin/check');
+          const response = await fetch('/api/admin/check', { cache: 'no-store' });
           const data = await response.json();
-          setIsAdmin(data.isAdmin);
+          
+          if (!isMounted) return;
+
           if (data.isAdmin) {
+            setIsAdmin(data.isAdmin);
             setAdminAccess({
               discordId: data.discordId,
               designation: data.designation
@@ -126,28 +132,46 @@ export default function AdminPage() {
             // Set initial section if user has limited access
             if (data.designation !== 'all') {
               if (Array.isArray(data.designation) && data.designation.length > 0) {
-                setSelectedSection(data.designation[0]);
+                setSelectedSection(prev => prev === 'whitelist' ? data.designation[0] : prev);
               } else if (typeof data.designation === 'string') {
-                setSelectedSection(data.designation);
+                setSelectedSection(prev => prev === 'whitelist' ? data.designation : prev);
               }
             }
-            await fetchApplications();
+            if (!initialFetchDone) {
+              await fetchApplications();
+              initialFetchDone = true;
+            }
           } else {
-            router.push('/');
+            if (isAdmin) {
+              // User had admin access but lost it
+              toast({
+                title: 'Not Authorized',
+                description: 'Your admin access has been revoked.',
+                variant: 'destructive',
+                duration: 5000,
+              });
+            }
+            router.push('/profile');
           }
         } catch (error) {
           console.error('Error checking admin status:', error);
-          router.push('/');
+          if (isMounted) router.push('/');
         } finally {
-          setIsLoading(false);
+          if (isMounted) setIsLoading(false);
         }
       } else if (status !== "loading") {
-        router.push('/');
+        if (isMounted) router.push('/');
       }
     };
 
     checkAdminStatus();
-  }, [session, status, router]);
+    const interval = setInterval(checkAdminStatus, 5000);
+
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
+  }, [session, status, router, isAdmin]);
 
   // Set up periodic refresh
   useEffect(() => {

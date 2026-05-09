@@ -12,7 +12,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useSession } from "next-auth/react"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useToast } from "@/components/ui/use-toast"
 import {
@@ -33,6 +34,16 @@ export function DepartmentApplicationForm({ config }: DepartmentApplicationFormP
   const [formData, setFormData] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session?.user) {
+      setFormData(prev => ({
+        ...prev,
+        discordId: (session.user as any).id || ''
+      }));
+    }
+  }, [session]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -83,8 +94,8 @@ export function DepartmentApplicationForm({ config }: DepartmentApplicationFormP
           duration: 5000,
         });
         setOpen(false);
-        // Reset form data
-        setFormData({});
+        // Reset form data, keeping discordId
+        setFormData({ discordId: (session?.user as any)?.id || '' });
       } else {
         toast({
           title: 'Submission Failed',
@@ -167,14 +178,15 @@ export function DepartmentApplicationForm({ config }: DepartmentApplicationFormP
                         </SelectContent>
                       </Select>
                     ) : (
-                      <Input
-                        id={question.id}
-                        type={question.type}
-                        required={question.required}
-                        placeholder={question.placeholder}
-                        value={formData[question.id] || ''}
-                        onChange={(e) => handleInputChange(question.id, e.target.value)}
-                      />
+                        <Input
+                          id={question.id}
+                          type={question.type}
+                          required={question.required}
+                          placeholder={question.placeholder}
+                          value={question.id === 'discordId' ? ((session?.user as any)?.id || '') : (formData[question.id] || '')}
+                          onChange={(e) => handleInputChange(question.id, e.target.value)}
+                          disabled={question.id === 'discordId'}
+                        />
                     )}
                   </div>
                 ))}
@@ -206,8 +218,9 @@ export function DepartmentApplicationForm({ config }: DepartmentApplicationFormP
                         type={question.type}
                         required={question.required}
                         placeholder={question.placeholder}
-                        value={formData[question.id] || ''}
+                        value={question.id === 'discordId' ? ((session?.user as any)?.id || '') : (formData[question.id] || '')}
                         onChange={(e) => handleInputChange(question.id, e.target.value)}
+                        disabled={question.id === 'discordId'}
                       />
                     )}
                   </div>

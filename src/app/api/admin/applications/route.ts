@@ -226,6 +226,7 @@ export async function PUT(request: Request) {
     // Send webhook notification to Discord
     try {
       const guildId = process.env.DISCORD_SERVER_ID || '';
+      const botToken = process.env.DISCORD_BOT_TOKEN || '';
       const action = status === 'approved' ? 'accept' : 'reject';
       const reason = null; // You can add a reason field to the request body if needed
       const adminName = session.user.name || '';
@@ -241,12 +242,44 @@ export async function PUT(request: Request) {
           reason,
           adminName
         );
+
+        // Directly assign role via Discord API if approved
+        if (action === 'accept' && botToken && applicantId) {
+          const ASSIGN_ROLES: Record<string, string> = {
+            'whitelist': '1489608409061003505',
+            'doj': '1489608401444012223',
+            'police': '1489608403511808232',
+            'ems': '1489608414857269370',
+            'doc': '1489608417025855628'
+          };
+          
+          const roleToAssign = ASSIGN_ROLES[type];
+          if (roleToAssign) {
+            const roleResponse = await fetch(
+              `https://discord.com/api/guilds/${guildId}/members/${applicantId}/roles/${roleToAssign}`,
+              {
+                method: 'PUT',
+                headers: {
+                  Authorization: `Bot ${botToken}`,
+                  'X-Audit-Log-Reason': `Application accepted by ${adminName}`
+                }
+              }
+            );
+
+            if (!roleResponse.ok) {
+              const errBody = await roleResponse.text();
+              console.error(`Failed to assign role to user ${applicantId}: ${roleResponse.status} ${errBody}`);
+            } else {
+              console.log(`Successfully assigned role ${roleToAssign} to ${applicantId}`);
+            }
+          }
+        }
       } else {
-        console.warn('DISCORD_SERVER_ID not configured, skipping webhook notification');
+        console.warn('DISCORD_SERVER_ID not configured, skipping webhook and role assignment');
       }
     } catch (webhookError) {
       // Log error but don't fail the request if webhook fails
-      console.error('Failed to send webhook notification:', webhookError);
+      console.error('Failed to send webhook notification or assign role:', webhookError);
     }
 
     return NextResponse.json({ success: true });

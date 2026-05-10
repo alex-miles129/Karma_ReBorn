@@ -1,27 +1,27 @@
 'use client';
 
-import { Lock, Code, Infinity, Server } from 'lucide-react';
+import { Users, Briefcase, Shield, Code } from 'lucide-react';
 
 const features = [
   {
-    icon: Lock,
-    title: 'Your keys, your funds',
-    description: 'The security and privacy of our users\' funds is of utmost importance, and we have implemented strict protocols to ensure that the private keys are protected at all times. Only the users themselves have access to their private keys, giving them full control and security over their funds.'
+    icon: Users,
+    title: 'Immersive Storytelling',
+    description: 'Create a unique character and build your own legacy. Whether you want to be a humble citizen, a ruthless gang leader, or a highly decorated officer, your choices shape the city of Karma ReBorn.'
+  },
+  {
+    icon: Briefcase,
+    title: 'Player-Driven Economy',
+    description: 'Experience a dynamic, living world where the economy reacts to player actions. Own businesses, trade goods, or engage in the underground black market to build your empire.'
+  },
+  {
+    icon: Shield,
+    title: 'Law & Order',
+    description: 'Join the ranks of the Los Santos Police Department, save lives as EMS, or uphold justice in the DOJ. Prefer the dark side? Plan intricate heists and evade the authorities.'
   },
   {
     icon: Code,
-    title: 'Tailor-made scripts',
-    description: 'Unique approach involves using tailor-made Fivem scripts, specifically designed to enhance the performance and functionality of our server. With a focus on optimization, customization, Nightcall is developed to ensure a seamless and enjoyable experience for all.'
-  },
-  {
-    icon: Infinity,
-    title: 'Blockchain',
-    description: 'We believe in the power of decentralization, which is why we\'ve created a token that operates on a secure and transparent blockchain. This system gives players more control over their virtual assets and creates a truly decentralized gaming economy.'
-  },
-  {
-    icon: Server,
-    title: 'Infrastructure',
-    description: 'Reliability and stability are at the forefront of our operations. With multiple backups and fail-safes in place, we guarantee that your progress will never be lost, and downtime will be kept to a minimum. We understand that the last thing you want to worry about is server lag or instability, which is why we\'ve made it our mission to provide the most resilient and stable gaming environment possible.'
+    title: 'Custom Framework',
+    description: 'Enjoy a seamless and optimized experience powered by our tailor-made scripts. Discover custom housing, unique vehicles, illegal activities, and interactive UI systems designed exclusively for our server.'
   }
 ];
 
@@ -33,7 +33,7 @@ export function HowItWorksSection() {
         <div
           className="absolute inset-0 w-full h-full bg-cover bg-center blur-sm"
           style={{
-            backgroundImage: "url('https://files.fivemerr.com/images/99f9abf9-ed5e-40bc-921b-a59a2efb991a.png')",
+            backgroundImage: "url('https://r2.fivemanage.com/fIzwGUYZR5rnjUFPnGj3B/ChatGPTImageMar11202609_39_50PM.png')",
           }}
         />
         {/* Dark overlay with blur for better text readability */}

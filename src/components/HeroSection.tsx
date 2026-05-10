@@ -4,12 +4,66 @@ import { Icons } from '@/config/siteConfig';
 import { useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+
 export function HeroSection() {
   const [mounted, setMounted] = useState(false);
+  const [playerCount, setPlayerCount] = useState<number>(0);
+  const [maxPlayers, setMaxPlayers] = useState<number>(0);
+  const [isAllowlisted, setIsAllowlisted] = useState<boolean | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalType, setModalType] = useState<"login" | "allowlist" | null>(null);
+  
   const { data: session } = useSession();
+  const router = useRouter();
+  
   useEffect(() => {
     setMounted(true);
+    
+    const fetchPlayers = async () => {
+      try {
+        const res = await fetch('https://servers-frontend.fivem.net/api/servers/single/3yg5rzz');
+        const data = await res.json();
+        if (data && data.Data) {
+          setPlayerCount(data.Data.clients);
+          setMaxPlayers(data.Data.sv_maxclients);
+        }
+      } catch (e) {
+        console.error("Failed to fetch player count", e);
+      }
+    };
+    
+    fetchPlayers();
+    const interval = setInterval(fetchPlayers, 60000);
+    return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    const checkRole = async () => {
+      if (session?.user) {
+        try {
+          // appending a timestamp to prevent browser-level caching
+          const res = await fetch(`/api/user/role?t=${Date.now()}`);
+          const data = await res.json();
+          setIsAllowlisted(data.isAllowlisted);
+        } catch (e) {
+          console.error("Failed to check role", e);
+        }
+      }
+    };
+
+    if (session?.user) {
+      checkRole();
+      interval = setInterval(checkRole, 5000);
+    }
+
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [session]);
 
   if (!mounted) {
     return null;
@@ -54,29 +108,76 @@ export function HeroSection() {
               A high-intensity survival roleplay experience set in a collapsing city. Forge alliances, make impossible choices,
               and carve your legacy out of the chaos.
             </p>
-            <div className="mt-4 flex flex-col sm:flex-row gap-4">
-              {session?.user ? (
-                <Button
-                  size="lg"
-                  asChild
-                  className="w-full sm:w-auto bg-red-600 hover:bg-red-500 text-white px-8 rounded-full shadow-lg shadow-red-900/40 transition-transform duration-200 hover:scale-105"
-                >
-                  <Link href="/profile">
-                    <Icons.play className="mr-2 h-5 w-5" />
-                    Apply Now
-                  </Link>
-                </Button>
-              ) : (
-                <Button
-                  size="lg"
-                  className="w-full sm:w-auto bg-red-600 hover:bg-red-500 text-white px-8 rounded-full shadow-lg shadow-red-900/40 transition-transform duration-200 hover:scale-105"
-                  onClick={() => signIn("discord", { callbackUrl: "/" })}
-                >
-                  <Icons.loginDiscord className="mr-2 h-5 w-5" />
-                  Get Started
-                </Button>
-              )}
+            
+            <div className="mt-8 flex flex-row items-center gap-4">
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (!session?.user) {
+                    setModalType("login");
+                    setIsModalOpen(true);
+                  } else if (isAllowlisted === false) {
+                    setModalType("allowlist");
+                    setIsModalOpen(true);
+                  } else if (isAllowlisted === true) {
+                    window.location.href = "fivem://connect/3yg5rzz";
+                  }
+                }}
+                className="relative flex items-center justify-center bg-[#11141e] text-white px-8 py-3.5 rounded-xl font-bold tracking-wider transition-transform hover:scale-105 hover:shadow-[0_0_15px_rgba(220,38,38,0.5)]"
+                style={{
+                  boxShadow: "inset 0 0 0 2px transparent",
+                  background: "linear-gradient(#11141e, #11141e) padding-box, linear-gradient(to right, #ef4444, #7f1d1d) border-box",
+                  border: "2px solid transparent"
+                }}
+              >
+                <span className="relative flex items-center z-10 text-base sm:text-lg">
+                  PLAY <span className="ml-2 font-black text-xl leading-none">›</span>
+                </span>
+              </button>
+
+              <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-4 rounded-xl border border-white/5 text-gray-200">
+                <Icons.joinDiscord className="w-5 h-5 opacity-80" />
+                <span className="font-bold tracking-widest text-base sm:text-lg">
+                  {playerCount}/{maxPlayers}
+                </span>
+              </div>
             </div>
+            
+            <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+              <DialogContent className="sm:max-w-[425px] bg-background/95 backdrop-blur-md border-border/50">
+                <DialogHeader>
+                  <DialogTitle className="text-2xl text-center">
+                    {modalType === "login" ? "Authentication Required" : "Whitelist Required"}
+                  </DialogTitle>
+                  <DialogDescription className="text-center pt-2">
+                    {modalType === "login" 
+                      ? "You must be signed in to play Karma ReBorn. Please sign in with Discord to continue."
+                      : "You must be whitelisted to join the server. Please apply for the whitelist first."}
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="flex justify-center mt-4">
+                  {modalType === "login" ? (
+                    <Button
+                      onClick={() => signIn("discord", { callbackUrl: "/" })}
+                      className="bg-[#5865F2] hover:bg-[#4752C4] text-white gap-2 w-full py-6"
+                    >
+                      <Icons.loginDiscord className="w-5 h-5" />
+                      Sign In with Discord
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={() => {
+                        setIsModalOpen(false);
+                        router.push("/applications");
+                      }}
+                      className="bg-red-600 hover:bg-red-500 text-white gap-2 w-full py-6"
+                    >
+                      Apply for Whitelist
+                    </Button>
+                  )}
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
 
           {/* Right spacer to mimic composition (image is handled by background) */}

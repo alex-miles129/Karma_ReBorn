@@ -1,7 +1,9 @@
 import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
 import { HeroSection } from '@/components/HeroSection';
-import { TeamSection } from '@/components/TeamSection';
+import { CtaSection } from '@/components/CtaSection';
+import { StoreSection } from '@/components/StoreSection';
+import { FaqSection } from '@/components/FaqSection';
 import { ScrollProgressBar } from '@/components/ScrollProgressBar';
 
 export default function HomePage() {
@@ -11,9 +13,9 @@ export default function HomePage() {
       <SiteHeader />
       <main className="relative">
         <HeroSection />
-        <div className="relative bg-background/40 backdrop-blur-md">
-          <TeamSection />
-        </div>
+        <StoreSection />
+        <CtaSection />
+        <FaqSection />
       </main>
       <SiteFooter />
     </>

@@ -36,16 +36,17 @@ export function SiteHeader() {
           >
             How it works
           </Link>
+          <Link
+            href="/rules"
+            className="text-foreground/60 hover:text-foreground transition-colors"
+          >
+            Rules
+          </Link>
           {session?.user ? (
             <>
               <Link
-                href="/rules"
-                className="text-foreground/60 hover:text-foreground transition-colors"
-              >
-                Rules
-              </Link>
-              <Link
-                href="/store"
+                href="https://crimetownrp.tebex.io/"
+                target="_blank"
                 className="text-foreground/60 hover:text-foreground transition-colors"
               >
                 Store
@@ -86,16 +87,17 @@ export function SiteHeader() {
                 >
                   How it works
                 </Link>
+                <Link
+                  href="/rules"
+                  className="text-foreground/70 hover:text-foreground transition-colors"
+                >
+                  Rules
+                </Link>
                 {session?.user ? (
                   <>
                     <Link
-                      href="/rules"
-                      className="text-foreground/70 hover:text-foreground transition-colors"
-                    >
-                      Rules
-                    </Link>
-                    <Link
-                      href="/store"
+                      href="https://crimetownrp.tebex.io/"
+                      target="_blank"
                       className="text-foreground/70 hover:text-foreground transition-colors"
                     >
                       Store

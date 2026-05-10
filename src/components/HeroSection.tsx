@@ -35,7 +35,7 @@ export function HeroSection() {
     };
     
     fetchPlayers();
-    const interval = setInterval(fetchPlayers, 60000);
+    const interval = setInterval(fetchPlayers, 2000);
     return () => clearInterval(interval);
   }, []);
 

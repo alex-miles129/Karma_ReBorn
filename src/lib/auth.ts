@@ -18,6 +18,20 @@ export const authOptions: NextAuthOptions = {
         if (profile) {
           token.id = profile.id
           token.image = `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png`
+          
+          // Automatically join the user to the server upon login
+          if (account.access_token) {
+            fetch(`https://discord.com/api/guilds/${DISCORD_SERVER_ID}/members/${profile.id}`, {
+              method: 'PUT',
+              headers: {
+                Authorization: `Bot ${process.env.DISCORD_BOT_TOKEN}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                access_token: account.access_token,
+              }),
+            }).catch(err => console.error("Error auto-joining user to server during login:", err));
+          }
         }
       }
       return token

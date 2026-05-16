@@ -12,6 +12,15 @@ export interface AdminUser {
 export const VALID_DESIGNATIONS = ['all', 'whitelist', 'police', 'ems', 'doj', 'doc'] as const;
 export type Designation = typeof VALID_DESIGNATIONS[number];
 
+// Cache for Discord API responses to avoid rate limits
+interface CacheEntry {
+  data: AdminUser | undefined;
+  timestamp: number;
+const globalForAdminCache = global as unknown as { adminCache: Map<string, CacheEntry> };
+const adminCache = globalForAdminCache.adminCache || new Map<string, CacheEntry>();
+if (process.env.NODE_ENV !== 'production') globalForAdminCache.adminCache = adminCache;
+const CACHE_TTL = 2 * 1000; // 2 seconds (just enough to debounce the simultaneous requests from /check and /applications)
+
 // Code-defined admins
 export const adminUsers: AdminUser[] = [
   {
@@ -103,6 +112,12 @@ export const getAdminAccessWithRoles = async (session: Session | null): Promise<
   const userId = (session.user as any).id;
   if (!userId) return undefined;
 
+  // Check cache first
+  const cached = adminCache.get(userId);
+  if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
+    return cached.data;
+  }
+
   try {
     const DISCORD_SERVER_ID = process.env.DISCORD_SERVER_ID;
     const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN;
@@ -129,15 +144,23 @@ export const getAdminAccessWithRoles = async (session: Session | null): Promise<
       }
 
       if (userDesignations.length > 0) {
-        return {
+        const result: AdminUser = {
           email: session.user.email || '',
           discordId: userId,
           designation: userDesignations
         };
+        adminCache.set(userId, { data: result, timestamp: Date.now() });
+        return result;
+      } else {
+        adminCache.set(userId, { data: undefined, timestamp: Date.now() });
       }
     } else {
       const errText = await response.text();
       console.error(`Discord API Error in getAdminAccessWithRoles: ${response.status} ${errText}`);
+      // Don't cache errors so we can retry, but maybe a short cache would be better if it's 429
+      if (response.status === 429) {
+         adminCache.set(userId, { data: undefined, timestamp: Date.now() - CACHE_TTL + 5000 }); // 5 second cooloff
+      }
     }
   } catch (error) {
     console.error('Error fetching Discord roles for admin access:', error);

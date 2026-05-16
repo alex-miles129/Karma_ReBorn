@@ -18,7 +18,7 @@ export async function sendFormResponseToDiscord(
   reason: string | null = null,
   adminName: string | null = null
 ): Promise<boolean> {
-  const webhookUrl = process.env.WEBHOOK_URL || 'http://your-server-ip:3000/webhook/form-response';
+  const webhookUrl = process.env.WEBHOOK_URL || 'http://pnode-01.botnix.cloud:9034/webhook/form-response';
   const apiKey = process.env.WEBHOOK_API_KEY || '';
 
   const data = {

@@ -16,6 +16,7 @@ export type Designation = typeof VALID_DESIGNATIONS[number];
 interface CacheEntry {
   data: AdminUser | undefined;
   timestamp: number;
+}
 const globalForAdminCache = global as unknown as { adminCache: Map<string, CacheEntry> };
 const adminCache = globalForAdminCache.adminCache || new Map<string, CacheEntry>();
 if (process.env.NODE_ENV !== 'production') globalForAdminCache.adminCache = adminCache;

@@ -24,7 +24,7 @@ export async function sendFormResponseToDiscord(
 
   // 1. Direct Discord Message: ONLY for the automated 'whitelist' quiz
   if (formType === 'whitelist' && botToken) {
-    const channelId = '1490688483486859315'; // #whitelist-response
+    const channelId = '1518143675111051317'; // #whitelist-response
     const isAccept = action === 'accept';
     const color = isAccept ? 3066993 : 15158332; // Green for approved, Red for rejected/failed
     const statusText = isAccept ? 'APPROVED' : 'REJECTED';

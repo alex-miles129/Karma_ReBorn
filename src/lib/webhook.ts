@@ -74,7 +74,7 @@ export async function sendFormResponseToDiscord(
           Authorization: `Bot ${botToken}`,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ embeds: [embed] })
+        body: JSON.stringify({ content: applicantId ? `<@${applicantId}>` : '', embeds: [embed] })
       });
 
       if (response.ok) {

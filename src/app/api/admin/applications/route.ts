@@ -269,10 +269,10 @@ export async function PUT(request: Request) {
         if (action === 'accept' && botToken && applicantId) {
           const ASSIGN_ROLES: Record<string, string> = {
             'whitelist': '1518143675111051317',
-            'doj': '1489608401444012223',
-            'police': '1489608403511808232',
-            'ems': '1489608414857269370',
-            'doc': '1489608417025855628'
+            'doj': '1518143665975857213',
+            'police': '1518143666747605083',
+            'ems': '1518143667808899082',
+            'doc': '1518249867267408003'
           };
           
           const roleToAssign = ASSIGN_ROLES[type];

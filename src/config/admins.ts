@@ -42,11 +42,11 @@ export const adminUsers: AdminUser[] = [
 ];
 
 const ROLE_DESIGNATIONS: Record<string, Designation> = {
-  '1489608368166539315': 'whitelist',
-  '1489608395265675374': 'doj',
-  '1489608397815812206': 'police',
-  '1489608399552254043': 'ems',
-  '1502720026417958972': 'doc'
+  '1518143650649866380': 'whitelist',
+  '1518143665975857213': 'doj',
+  '1518143666747605083': 'police',
+  '1518143667808899082': 'ems',
+  '1518249867267408003': 'doc'
 };
 
 // Function to read admins from file

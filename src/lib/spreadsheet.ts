@@ -6,7 +6,7 @@ import {
   GOOGLE_EMS_SHEET_ID,
   GOOGLE_POLICE_SHEET_ID,
   GOOGLE_DOJ_SHEET_ID,
-  GOOGLE_LIFER_SHEET_ID
+  GOOGLE_DOC_SHEET_ID
 } from '@/config/googleConfig';
 
 // Configure Google Sheets credentials
@@ -27,7 +27,7 @@ const SHEET_IDS = {
   ems: GOOGLE_EMS_SHEET_ID,
   police: GOOGLE_POLICE_SHEET_ID,
   doj: GOOGLE_DOJ_SHEET_ID,
-  doc: GOOGLE_LIFER_SHEET_ID,
+  doc: GOOGLE_DOC_SHEET_ID,
 };
 
 export async function appendToSheet(

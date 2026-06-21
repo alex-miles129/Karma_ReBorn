@@ -11,7 +11,7 @@ import {
 
 export async function POST(
   request: Request,
-  { params }: { params: { type: string } }
+  { params }: { params: Promise<{ type: string }> }
 ) {
   try {
     // Get user session
@@ -25,7 +25,7 @@ export async function POST(
 
     // Get application data from request
     const formData = await request.json();
-    const { type } = params;
+    const { type } = await params;
 
     // Validate form data
     if (!formData || typeof formData !== 'object') {
@@ -91,6 +91,13 @@ export async function POST(
         values: [rowData],
       },
     });
+
+    // Invalidate sheets cache for admin panel
+    const globalForSheetsCache = global as unknown as { sheetsCache?: Map<string, any> };
+    if (globalForSheetsCache.sheetsCache) {
+      globalForSheetsCache.sheetsCache.delete(type);
+      console.log(`Invalidated ${type} sheets cache on new submission`);
+    }
 
     return NextResponse.json({ 
       success: true,

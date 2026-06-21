@@ -15,7 +15,7 @@ import Stripe from 'stripe';
 // Note: Install stripe package first: npm install stripe
 const stripe = process.env.STRIPE_SECRET_KEY 
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: '2024-12-18.acacia',
+      apiVersion: '2024-12-18.acacia' as any,
     })
   : null;
 

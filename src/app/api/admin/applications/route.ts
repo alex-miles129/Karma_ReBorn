@@ -24,7 +24,7 @@ interface SheetsCacheEntry {
 }
 const globalForSheetsCache = global as unknown as { sheetsCache: Map<string, SheetsCacheEntry> };
 const sheetsCache = globalForSheetsCache.sheetsCache || new Map<string, SheetsCacheEntry>();
-if (process.env.NODE_ENV !== 'production') globalForSheetsCache.sheetsCache = sheetsCache;
+globalForSheetsCache.sheetsCache = sheetsCache;
 const SHEETS_CACHE_TTL = 15 * 1000; // 15 seconds
 
 // Define column positions for each application type

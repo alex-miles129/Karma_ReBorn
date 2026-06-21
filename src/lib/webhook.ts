@@ -18,9 +18,78 @@ export async function sendFormResponseToDiscord(
   reason: string | null = null,
   adminName: string | null = null
 ): Promise<boolean> {
+  const botToken = process.env.DISCORD_BOT_TOKEN;
   const webhookUrl = process.env.WEBHOOK_URL || 'http://pnode-01.botnix.cloud:9034/webhook/form-response';
   const apiKey = process.env.WEBHOOK_API_KEY || '';
 
+  // 1. Direct Discord Message: ONLY for the automated 'whitelist' quiz
+  if (formType === 'whitelist' && botToken) {
+    const channelId = '1490688483486859315'; // #whitelist-response
+    const isAccept = action === 'accept';
+    const color = isAccept ? 3066993 : 15158332; // Green for approved, Red for rejected/failed
+    const statusText = isAccept ? 'APPROVED' : 'REJECTED';
+    const bannerUrl = isAccept 
+      ? 'https://r2.fivemanage.com/fIzwGUYZR5rnjUFPnGj3B/whitelist_accept.png' 
+      : 'https://r2.fivemanage.com/fIzwGUYZR5rnjUFPnGj3B/whitelist_rejected.png';
+
+    const embed = {
+      title: `Application Response - WHITELIST`,
+      color: color,
+      fields: [
+        {
+          name: "Applicant Name",
+          value: applicantName || 'Unknown',
+          inline: true
+        },
+        {
+          name: "Discord ID",
+          value: applicantId ? `<@${applicantId}> (${applicantId})` : 'Unknown',
+          inline: true
+        },
+        {
+          name: "Status",
+          value: `**${statusText}**`,
+          inline: true
+        },
+        {
+          name: "Details",
+          value: reason || (isAccept ? 'Your application has been accepted! Please check your roles and channels.' : 'Your application was not approved at this time.'),
+          inline: false
+        }
+      ],
+      image: {
+        url: bannerUrl
+      },
+      timestamp: new Date().toISOString(),
+      footer: {
+        text: `Processed By: ${adminName || 'Automated System'} • India Town Roleplay`
+      }
+    };
+
+    try {
+      console.log(`Attempting to send direct Discord channel message to: ${channelId}`);
+      const response = await fetch(`https://discord.com/api/v10/channels/${channelId}/messages`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bot ${botToken}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ embeds: [embed] })
+      });
+
+      if (response.ok) {
+        console.log(`Direct Discord message sent successfully to channel: ${channelId}`);
+        return true;
+      } else {
+        const errText = await response.text().catch(() => '');
+        console.error(`Direct Discord channel message failed with status ${response.status}: ${errText}. Falling back to custom webhook.`);
+      }
+    } catch (err) {
+      console.error('Error sending direct Discord channel message, falling back to custom webhook:', err);
+    }
+  }
+
+  // 2. Custom webhook endpoint format (e.g. Botnix server): Used for all other department forms (or fallback)
   const data = {
     guildId: guildId,
     action: action,
@@ -33,6 +102,7 @@ export async function sendFormResponseToDiscord(
   };
 
   try {
+    console.log(`Sending custom webhook payload to: ${webhookUrl} for type: ${formType}`);
     const response = await fetch(webhookUrl, {
       method: 'POST',
       headers: {
@@ -42,15 +112,15 @@ export async function sendFormResponseToDiscord(
     });
 
     if (!response.ok) {
-      console.error(`Webhook request failed with status: ${response.status}`);
+      const text = await response.text().catch(() => '');
+      console.error(`Custom webhook request failed with status: ${response.status}. Body: ${text}`);
       return false;
     }
 
     const result = await response.json();
     return result.success === true;
   } catch (error) {
-    console.error('Error sending to Discord webhook:', error);
+    console.error('Error sending to custom Discord webhook:', error);
     return false;
   }
 }
-

@@ -136,6 +136,7 @@ export default function AdminPage() {
           if (data.isAdmin) {
             setIsAdmin(true);
             setAdminAccess({
+              email: session?.user?.email || '',
               discordId: data.discordId,
               designation: data.designation
             });
@@ -283,10 +284,16 @@ export default function AdminPage() {
     );
   }
 
-  const filteredApplications = applications.filter(app => 
-    app.type === selectedSection && 
-    (selectedStatus === 'pending' ? app.status === 'pending' : app.status !== 'pending')
-  );
+  const filteredApplications = applications
+    .filter(app => 
+      app.type === selectedSection && 
+      (selectedStatus === 'pending' ? app.status === 'pending' : app.status !== 'pending')
+    )
+    .sort((a, b) => {
+      const dateA = a.submittedAt ? new Date(a.submittedAt).getTime() : 0;
+      const dateB = b.submittedAt ? new Date(b.submittedAt).getTime() : 0;
+      return dateB - dateA;
+    });
 
   return (
     <div className="h-screen bg-background flex flex-col overflow-hidden">

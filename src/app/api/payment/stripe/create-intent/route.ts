@@ -56,7 +56,7 @@ export async function POST(request: Request) {
       currency.toLowerCase(),
       {
         orderId,
-        userId: session.user.id,
+        userId: session.user.id || '',
         userName: session.user.name || session.user.email || 'Customer',
       }
     );

@@ -118,6 +118,13 @@ export async function POST(req: Request) {
       },
     });
 
+    // Invalidate sheets cache for admin panel
+    const globalForSheetsCache = global as unknown as { sheetsCache?: Map<string, any> };
+    if (globalForSheetsCache.sheetsCache) {
+      globalForSheetsCache.sheetsCache.delete('whitelist');
+      console.log('Invalidated whitelist sheets cache on new submission');
+    }
+
     // Handle Discord role assignment if passed
     let roleAssigned = false;
     const guildId = process.env.DISCORD_SERVER_ID || '';

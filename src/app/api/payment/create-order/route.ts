@@ -39,7 +39,8 @@ export async function POST(request: Request) {
     }
 
     // Generate order ID
-    const orderId = generateOrderId(session.user.id);
+    const userId = session.user.id || '';
+    const orderId = generateOrderId(userId);
     
     // Calculate expiry time (15 minutes from now)
     const expiresAt = new Date(Date.now() + 15 * 60 * 1000).toISOString();
@@ -50,7 +51,7 @@ export async function POST(request: Request) {
       amount: Math.round(amount * 100) / 100, // Round to 2 decimal places
       currency,
       items,
-      userId: session.user.id,
+      userId,
       userName: session.user.name || session.user.email || 'Customer',
       status: 'pending',
       createdAt: new Date().toISOString(),
@@ -61,7 +62,7 @@ export async function POST(request: Request) {
     orders.set(orderId, order);
 
     // Create secure payment token
-    const paymentToken = createPaymentToken(orderId, order.amount, session.user.id);
+    const paymentToken = createPaymentToken(orderId, order.amount, userId);
 
     return NextResponse.json({
       orderId,

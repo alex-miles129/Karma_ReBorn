@@ -130,7 +130,7 @@ export function MembershipBadge({ type, className = '' }: MembershipBadgeProps) 
               y1="45"
               x2="85"
               y2="65"
-              stroke={config.accentColor}
+              stroke={(config as any).accentColor}
               strokeWidth="1.5"
               opacity="0.6"
             />
@@ -139,7 +139,7 @@ export function MembershipBadge({ type, className = '' }: MembershipBadgeProps) 
               y1="45"
               x2="55"
               y2="65"
-              stroke={config.accentColor}
+              stroke={(config as any).accentColor}
               strokeWidth="1.5"
               opacity="0.6"
             />

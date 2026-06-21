@@ -7,6 +7,7 @@ export interface BaseApplication {
   reviewedAt?: string;
   username: string;
   discordId: string;
+  email?: string;
 }
 
 export interface WhitelistApplication extends BaseApplication {

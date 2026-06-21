@@ -94,7 +94,7 @@ export function formatApplicationData(type: keyof typeof columnOrders, formData:
 
   // Add administrative fields with default values
   const timestamp = new Date().toISOString();
-  const enrichedFormData = {
+  const enrichedFormData: Record<string, string> = {
     ...formData,
     submissionDate: timestamp,
     timestamp: timestamp,        // Add timestamp field explicitly

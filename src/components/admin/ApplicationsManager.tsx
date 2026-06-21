@@ -19,7 +19,11 @@ const ApplicationsManager: React.FC<ApplicationsManagerProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [selectedApplication, setSelectedApplication] = useState<any | null>(null);
 
-  const config = applicationForms[type];
+  const config = (applicationForms as any)[type] || {
+    title: 'Whitelist',
+    description: 'Whitelist applications',
+    questions: []
+  };
 
   useEffect(() => {
     loadApplications();
@@ -63,9 +67,9 @@ const ApplicationsManager: React.FC<ApplicationsManagerProps> = ({
           <div>
             <p className="text-gray-600">Status</p>
             <p className={`font-semibold ${
-              application.status === 'approved' ? 'text-green-600' :
-              application.status === 'rejected' ? 'text-red-600' :
-              'text-yellow-600'
+               application.status === 'approved' ? 'text-green-600' :
+               application.status === 'rejected' ? 'text-red-600' :
+               'text-yellow-600'
             }`}>
               {application.status.toUpperCase()}
             </p>
@@ -88,8 +92,8 @@ const ApplicationsManager: React.FC<ApplicationsManagerProps> = ({
           <div>
             <h4 className="text-lg font-semibold mb-3">OOC Information</h4>
             {config.questions
-              .filter(q => q.section === 'ooc')
-              .map(question => (
+              .filter((q: any) => q.section === 'ooc')
+              .map((question: any) => (
                 <div key={question.id} className="mb-4">
                   <p className="text-gray-600">{question.label}</p>
                   <p className="mt-1">{application[question.id]}</p>
@@ -100,8 +104,8 @@ const ApplicationsManager: React.FC<ApplicationsManagerProps> = ({
           <div>
             <h4 className="text-lg font-semibold mb-3">IC Information</h4>
             {config.questions
-              .filter(q => q.section === 'ic')
-              .map(question => (
+              .filter((q: any) => q.section === 'ic')
+              .map((question: any) => (
                 <div key={question.id} className="mb-4">
                   <p className="text-gray-600">{question.label}</p>
                   <p className="mt-1">{application[question.id]}</p>

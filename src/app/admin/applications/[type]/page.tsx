@@ -12,7 +12,7 @@ interface PageProps {
 export default async function ApplicationsAdminPage({ params }: PageProps) {
   const { type: typeParam } = await params;
   const type = typeParam as ApplicationType;
-  const config = applicationForms[type];
+  const config = (applicationForms as any)[type];
 
   if (!config) {
     notFound();

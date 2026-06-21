@@ -1,0 +1,387 @@
+[
+  {
+    "id": 1,
+    "question": "A friend tells you something about another player's plans over Discord — information your character has no in-character way of knowing. What do you do?",
+    "options": [
+      "Use it immediately to confront their character",
+      "Ignore it completely and only act on information your character has learned in-game",
+      "Tell your character's friends about it in IC chat",
+      "Wait a few minutes, then use it so it looks less obvious"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": 2,
+    "question": "While driving, you accidentally clip a parked car. No one saw it happen. What's the appropriate response?",
+    "options": [
+      "Drive away since no one saw",
+      "Type \"oops lol\" in OOC chat and continue",
+      "Blame it on lag in IC chat",
+      "Stop, assess the damage in character, and react as your character realistically would (leave a note, call it in, etc.)"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "id": 3,
+    "question": "You're in a serious scene and another player keeps breaking immersion by talking about real-life topics over voice chat.",
+    "options": [
+      "Use /ooc or your server's OOC method to politely ask them to stay in character",
+      "Join in since it's funny",
+      "Ignore it and hope it stops",
+      "Kill their character in IC to \"punish\" them"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 4,
+    "question": "You witness a crime but need to log off for the night. What's the right way to handle it?",
+    "options": [
+      "Log off immediately to avoid being questioned",
+      "Tell police OOC what happened, then log off",
+      "Find a safe, in-character reason to leave the scene before logging off",
+      "Stand there AFK until someone notices"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "id": 5,
+    "question": "Another player breaks the fourth wall mid-scene, mentioning \"the server\" or game mechanics.",
+    "options": [
+      "Respond in character as if they said something normal",
+      "Step out via OOC briefly to flag it, then return to the scene properly",
+      "Report them immediately without saying anything",
+      "Mimic them and also break character"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": 6,
+    "question": "Three armed people point guns at your character and demand you put your hands up. Your character only has a knife.",
+    "options": [
+      "Pull out the knife and fight back",
+      "Run away in a straight line while they shoot",
+      "Type /ooc \"this isn't fair\" and leave the scene",
+      "Comply and roleplay realistic fear — fighting three armed people with a knife isn't realistic"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "id": 7,
+    "question": "You see an unfamiliar player standing near a bank and assume they're about to rob it.",
+    "options": [
+      "Approach and roleplay observing or questioning them before taking any action",
+      "Shoot them immediately to stop the robbery",
+      "Call the police OOC immediately",
+      "Run them over with your car as a precaution"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 8,
+    "question": "Your character dies in a shootout. Under the New Life Rule (NLR), what should you do?",
+    "options": [
+      "Remember everything and seek revenge on whoever killed you",
+      "Tell the people who killed you \"good game\" and carry on as normal",
+      "Forget the specifics of the scene that led to your death and don't return to that conflict",
+      "Wait five minutes, then return to the same fight"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "id": 9,
+    "question": "You're losing a gunfight and about to be caught. What's the appropriate response?",
+    "options": [
+      "Disconnect from the server to dodge the consequences",
+      "See the roleplay through to its conclusion (surrender, arrest, etc.), even if the outcome is bad for your character",
+      "Type \"I have to go\" in OOC and log off mid-scene",
+      "Claim your character suddenly had a heart attack to escape"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": 10,
+    "question": "Two robbers properly initiate on a store — clear demands, a real threat, and time given to comply — before anything escalates. How should this be judged?",
+    "options": [
+      "This is RDM since they didn't ask permission first",
+      "This is FailRP because robbery isn't allowed",
+      "This is metagaming since they used OOC information",
+      "This is acceptable RP, since there was a proper initiation and a real chance to comply"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "id": 11,
+    "question": "A player drives into a crowd of pedestrians with no RP reason or buildup, killing several instantly.",
+    "options": [
+      "This is VDM (Vehicle Deathmatch) and a rule violation",
+      "This is fine — it's an open-world game",
+      "This is fine as long as they apologize in OOC afterward",
+      "This is acceptable as a \"prank\" RP"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 12,
+    "question": "After winning a gunfight, you instantly loot the bodies via menu with zero dialogue or roleplay.",
+    "options": [
+      "This is fine — looting is part of the game",
+      "This is fine since they're unconscious",
+      "This is Power Gaming — the search should be roleplayed, not instant",
+      "This is normal looting RP"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "id": 13,
+    "question": "Your character is shot and badly hurt. EMS arrives to treat you in a reasonable amount of time.",
+    "options": [
+      "Self-revive instantly through a menu to skip the wait",
+      "Stay in character, roleplay the injury, and wait for EMS treatment",
+      "Walk it off and keep running",
+      "Log off since you don't want to wait"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": 14,
+    "question": "You're being restrained/choked by another player while a third player interrogates you.",
+    "options": [
+      "Spam movement keys to break free",
+      "Log off to avoid the situation",
+      "Ask OOC for them to let you go because you don't like it",
+      "Roleplay the restrained state and respond through dialogue rather than exploiting mechanics to escape"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "id": 15,
+    "question": "A heavily armed criminal points a gun at an unarmed civilian with zero RP buildup, just because they wanted \"action.\"",
+    "options": [
+      "This is poor RP/a rule violation — conflict needs a real in-character reason and buildup",
+      "This is good RP — it creates excitement",
+      "This is fine since the civilian can just walk away",
+      "This is acceptable since responding is optional"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 16,
+    "question": "As an officer, you pull someone over for a broken taillight, and they comply fully and politely.",
+    "options": [
+      "Arrest them immediately for resisting",
+      "Search the entire vehicle without cause",
+      "Run a realistic stop, issue a warning or citation fitting the offense, stay professional",
+      "Ask OOC if they have anything illegal"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "id": 17,
+    "question": "A fleeing suspect is eventually cornered with no escape route after a long chase.",
+    "options": [
+      "Keep running into the same dead end to avoid resolving the RP",
+      "Make a realistic in-character decision — surrender, negotiate, or a last resort, based on the character",
+      "Disconnect immediately",
+      "Claim diplomatic immunity OOC"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": 18,
+    "question": "You've been arrested and are being transported to jail.",
+    "options": [
+      "Use a game glitch to clip through the vehicle and escape",
+      "Log out the moment you're cuffed",
+      "Demand the officer let you go because \"it's not fair\"",
+      "Roleplay the arrest and transport, including any IC dialogue, without exploiting bugs"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "id": 19,
+    "question": "You see a robbery from a distance but weren't involved or threatened, and couldn't clearly identify the suspect.",
+    "options": [
+      "Only share what your character could realistically have observed and learned in-character",
+      "Report the suspect's full name and details to police OOC",
+      "Use admin chat to report it even though no rule was broken",
+      "Tell police what you saw on the player's stream"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 20,
+    "question": "An officer holds a low-risk single suspect for 10+ minutes waiting on backup, stalling the scene for everyone.",
+    "options": [
+      "This is correct procedure and should always be followed regardless of context",
+      "The suspect should just walk away",
+      "This is poor pacing — officers should balance realism with keeping RP moving for everyone involved",
+      "The suspect should log off and rejoin later"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "id": 21,
+    "question": "Your character is a drug dealer wanting to sell to another player.",
+    "options": [
+      "Announce in OOC chat what you're selling and the price",
+      "Roleplay the transaction discreetly in character, at an appropriate location",
+      "Sell openly in the middle of the police station",
+      "Advertise the sale over a public radio frequency"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": 22,
+    "question": "A suspect has clearly stated several times, in character, that they don't know anything. The officer repeats the same threat for 20 minutes with no new approach.",
+    "options": [
+      "This is fine — repetition builds tension",
+      "The suspect should log off since it's taking too long",
+      "The officer should call real-life police",
+      "This is poor RP — interrogations should progress rather than loop without development"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "id": 23,
+    "question": "You want to start an in-character business.",
+    "options": [
+      "Earn money and resources through legitimate in-character work and the server's economy",
+      "Ask an admin to spawn you free starting capital",
+      "Use a glitch to duplicate items for quick profit",
+      "Buy in-game currency from a third-party website"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 24,
+    "question": "You find a duplication glitch that creates unlimited cash.",
+    "options": [
+      "Use it quietly and tell no one",
+      "Use it once and stop",
+      "Report it to server staff and don't exploit it",
+      "Share it with close friends only"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "id": 25,
+    "question": "As an EMS character, a patient arrives with a roleplayed injury, and you instantly heal them via menu with no dialogue.",
+    "options": [
+      "This is fine — efficiency matters most",
+      "This is poor RP — medical treatment should include realistic roleplay and time",
+      "This is fine since the patient didn't complain",
+      "This is fine for repeat patients only"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": 26,
+    "question": "You're buying or renting a house in character.",
+    "options": [
+      "The transaction should be instant menu clicks, no dialogue",
+      "It should be skipped entirely since it's just a game mechanic",
+      "It should be negotiated entirely through OOC chat",
+      "The transaction should be roleplayed with dialogue, matching how a real purchase might unfold"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "id": 27,
+    "question": "You're a taxi driver and a passenger gets in your car.",
+    "options": [
+      "Greet the passenger, discuss the destination, and engage appropriately during the ride",
+      "Silently drive to the destination with no interaction",
+      "Refuse all passengers to avoid RP",
+      "Drive recklessly regardless of how the passenger reacts"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 28,
+    "question": "You discover a bug that lets you see through walls while crouched in a certain spot.",
+    "options": [
+      "Use it to gain a combat advantage",
+      "Use it sparingly so you don't get caught",
+      "Avoid using it and report it to server staff",
+      "Teach others how to do it for fun"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "id": 29,
+    "question": "You're streaming, and a viewer tells you where an enemy is hiding — something your character has no IC way of knowing.",
+    "options": [
+      "Use the information since you can't control your chat",
+      "Ignore it and base your actions only on what your character actually perceived",
+      "Thank the viewer in-game and act on it",
+      "Tell your in-game allies what the viewer said"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": 30,
+    "question": "You disagree with a decision a staff member makes during an active scene.",
+    "options": [
+      "Argue and refuse to comply in the moment, disrupting the scene",
+      "Leave the server permanently without explanation",
+      "Insult the staff member publicly in chat",
+      "Comply in the moment, then dispute it afterward through proper channels (tickets/reports)"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "id": 31,
+    "question": "You're unsure whether an action is allowed on the server.",
+    "options": [
+      "Check the server rules or ask staff before attempting it",
+      "Just try it and see what happens",
+      "Assume it's fine since other games allow it",
+      "Do it only when no staff are online"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 32,
+    "question": "You accidentally overhear sensitive IC plans in the wrong Discord/radio channel.",
+    "options": [
+      "Use the information since you \"didn't mean to\" hear it",
+      "Tell your faction leader what you heard",
+      "Disregard it entirely, since your character didn't learn it through legitimate IC means",
+      "Use it but pretend you found out another way"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "id": 33,
+    "question": "You're writing your character backstory for the application.",
+    "options": [
+      "Copy a backstory from a popular streamer's character",
+      "Create an original backstory that fits the server's setting and rules",
+      "Leave it blank — RP will define it organically",
+      "Include real, identifiable real-life people"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": 34,
+    "question": "Your character has a strong trait (e.g. a short temper). Staying true to it in a tense scene would lead to a worse outcome for your character.",
+    "options": [
+      "Abandon the trait to avoid bad consequences",
+      "Pause the scene to ask other players what to do",
+      "Switch to a different character mid-scene",
+      "Stay true to your character's established personality, even when it leads to an unfavorable outcome"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "id": 35,
+    "question": "Staff ask you to define \"Power Gaming\" in your own words during the interview.",
+    "options": [
+      "Forcing an action onto another player's character without giving them a realistic chance to react or resist",
+      "Playing the most powerful character available",
+      "Leveling up your character's skills quickly",
+      "Using in-game money to buy expensive items"
+    ],
+    "correctIndex": 0
+  }
+]

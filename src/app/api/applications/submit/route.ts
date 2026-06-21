@@ -3,6 +3,9 @@ import { NextResponse } from "next/server";
 import { authOptions } from "@/lib/auth";
 import { google } from 'googleapis';
 import { GOOGLE_PRIVATE_KEY, GOOGLE_SERVICE_ACCOUNT_EMAIL, GOOGLE_WHITELIST_SHEET_ID } from "@/config/googleConfig";
+import questionsData from "@/config/fivem_whitelist_questions.json";
+import { getWhitelistCooldown } from "@/lib/whitelist-server";
+import { sendFormResponseToDiscord } from "@/lib/webhook";
 
 export async function POST(req: Request) {
   try {
@@ -15,12 +18,59 @@ export async function POST(req: Request) {
       );
     }
 
-    const formData = await req.json();
+    const discordId = (session.user as any).id;
+    if (!discordId) {
+      return NextResponse.json(
+        { success: false, error: "Discord ID not found in session" },
+        { status: 400 }
+      );
+    }
+
+    // Check if user is on cooldown
+    const cooldownRemaining = await getWhitelistCooldown(discordId);
+    if (cooldownRemaining > 0) {
+      return NextResponse.json(
+        { 
+          success: false, 
+          error: "You are on cooldown. Please wait before reapplying.",
+          cooldownRemaining 
+        },
+        { status: 429 }
+      );
+    }
+
+    const { answers, terminated } = await req.json();
+
+    let score = 0;
+    let totalQuestions = 0;
+
+    if (!terminated && answers) {
+      // Evaluate answers
+      const answeredKeys = Object.keys(answers);
+      totalQuestions = answeredKeys.length;
+
+      for (const qIdStr of answeredKeys) {
+        const qId = parseInt(qIdStr, 10);
+        const originalQuestion = questionsData.find(q => q.id === qId);
+        
+        if (originalQuestion) {
+          const selectedOption = answers[qIdStr];
+          const correctOptionText = originalQuestion.options[originalQuestion.correctIndex];
+          
+          if (selectedOption === correctOptionText) {
+            score++;
+          }
+        }
+      }
+    }
+
+    const passed = !terminated && score >= 7;
+    const status = passed ? 'approved' : 'failed';
 
     // Initialize Google Sheets
     const auth = new google.auth.GoogleAuth({
       credentials: {
-        private_key: GOOGLE_PRIVATE_KEY,
+        private_key: GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
         client_email: GOOGLE_SERVICE_ACCOUNT_EMAIL,
       },
       scopes: ['https://www.googleapis.com/auth/spreadsheets'],
@@ -28,36 +78,34 @@ export async function POST(req: Request) {
 
     const sheets = google.sheets({ version: 'v4', auth });
 
-    // Prepare row data
+    // Prepare row data for Google Sheets
     const timestamp = new Date().toISOString();
-    const rowData = [
-      timestamp, // A - TimeStamp
-      session.user.name, // B - Username
-      formData.discordId, // C - Your Discord Username
-      formData.characterName, // D - What is your Character Name
-      formData.experience, // E - Do you have experience with other RP servers
-      formData.backstory, // F - Provide a brief backstory
-      formData.powergaming, // G - What is powergaming
-      formData.newLifeRule, // H - Explain the "New Life Rule"
-      formData.rdmVdm, // I - What is RDM and VDM
-      formData.stayingInCharacter, // J - Explain the concept of staying in character
-      formData.ruleBreaking, // K - You witness a player breaking rules
-      formData.gunpoint, // L - Your character is held at gunpoint
-      formData.agreeToRules, // M - Do you agree to follow all rules
-      formData.hasMicrophone, // N - Do you have a microphone
-      formData.memorableExperience, // O - Describe a memorable RP experience
-      formData.streamer, // P - Are you a streamer
-      formData.streamerLink || '', // Q - If so, please provide your channel link
-      'pending', // R - Status
-      '', // S - Updated By
-      '' // T - Time of Update
-    ];
+    const resultText = terminated 
+      ? 'failed (terminated due to screen exit)' 
+      : `${status} (${score}/10)`;
 
-    // Log the data being sent for debugging
-    console.log('Submitting application data:', {
-      formData,
-      rowData
-    });
+    const rowData = [
+      timestamp,              // A - TimeStamp
+      session.user.name,       // B - Username
+      discordId,               // C - Discord ID
+      '',                      // D - Character Name (N/A)
+      '',                      // E - Experience (N/A)
+      '',                      // F - Backstory (N/A)
+      '',                      // G - Powergaming (N/A)
+      '',                      // H - New Life Rule (N/A)
+      '',                      // I - RDM/VDM (N/A)
+      '',                      // J - Staying In Character (N/A)
+      '',                      // K - Rule Breaking (N/A)
+      '',                      // L - Gunpoint (N/A)
+      'Yes',                   // M - Agree to rules
+      'Yes',                   // N - Has microphone
+      resultText,              // O - Quiz score / Terminated logs (saved in memorable experience col)
+      '',                      // P - Streamer
+      '',                      // Q - Streamer link
+      status,                  // R - Status
+      'Automated Quiz',        // S - Reviewed By
+      timestamp                // T - Time of Update
+    ];
 
     // Append to Google Sheets
     await sheets.spreadsheets.values.append({
@@ -70,12 +118,76 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json({ success: true });
+    // Handle Discord role assignment if passed
+    let roleAssigned = false;
+    const guildId = process.env.DISCORD_SERVER_ID || '';
+    const botToken = process.env.DISCORD_BOT_TOKEN || '';
+    const whitelistRoleId = '1489608409061003505';
+
+    if (passed) {
+      if (guildId && botToken) {
+        try {
+          const roleResponse = await fetch(
+            `https://discord.com/api/guilds/${guildId}/members/${discordId}/roles/${whitelistRoleId}`,
+            {
+              method: 'PUT',
+              headers: {
+                Authorization: `Bot ${botToken}`,
+                'X-Audit-Log-Reason': `Whitelist quiz passed automatically (${score}/10)`
+              }
+            }
+          );
+
+          if (roleResponse.ok) {
+            roleAssigned = true;
+            console.log(`Successfully assigned whitelist role to user ${discordId}`);
+          } else {
+            const errBody = await roleResponse.text();
+            console.error(`Failed to assign role via Discord API: ${roleResponse.status} ${errBody}`);
+          }
+        } catch (discordErr) {
+          console.error('Error assigning Discord role:', discordErr);
+        }
+      } else {
+        console.warn('DISCORD_SERVER_ID or DISCORD_BOT_TOKEN not configured. Skipping role assignment.');
+      }
+    }
+
+    // Send Discord Webhook notification
+    if (guildId) {
+      try {
+        const action = passed ? 'accept' : 'reject';
+        const reason = terminated 
+          ? 'Failed the quiz automatically due to exiting fullscreen/losing window focus.' 
+          : `Attempted the whitelist quiz and scored ${score}/10 (Required: 7/10 to pass).`;
+        
+        await sendFormResponseToDiscord(
+          guildId,
+          action,
+          session.user.name || 'Unknown',
+          discordId,
+          'whitelist',
+          reason,
+          'Automated Quiz'
+        );
+      } catch (webhookErr) {
+        console.error('Failed to send Discord webhook:', webhookErr);
+      }
+    }
+
+    return NextResponse.json({
+      success: true,
+      passed,
+      score,
+      terminated,
+      roleAssigned,
+      cooldownRemaining: passed ? 0 : 6 * 60 * 60 * 1000
+    });
   } catch (error) {
-    console.error('Error submitting application:', error);
+    console.error('Error handling application submission:', error);
     return NextResponse.json(
-      { success: false, error: "Failed to submit application" },
+      { success: false, error: "Failed to process application submission" },
       { status: 500 }
     );
   }
-} 
+}

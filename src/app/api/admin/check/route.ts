@@ -15,12 +15,12 @@ export async function GET() {
       name: session?.user?.name
     });
 
-    if (!session?.user?.email) {
-      console.log('No session or email found');
+    if (!session?.user) {
+      console.log('No session found');
       return NextResponse.json({ 
         isAdmin: false, 
         error: 'Not authenticated',
-        details: 'No session or email found'
+        details: 'No session found'
       }, { status: 401 });
     }
 
@@ -53,7 +53,7 @@ export async function GET() {
       isAdmin: true,
       designation: adminAccess.designation,
       discordId: adminAccess.discordId,
-      email: session.user.email
+      email: session.user.email || null
     });
 
   } catch (error) {

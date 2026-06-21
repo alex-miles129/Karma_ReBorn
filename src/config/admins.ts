@@ -20,7 +20,7 @@ interface CacheEntry {
 const globalForAdminCache = global as unknown as { adminCache: Map<string, CacheEntry> };
 const adminCache = globalForAdminCache.adminCache || new Map<string, CacheEntry>();
 if (process.env.NODE_ENV !== 'production') globalForAdminCache.adminCache = adminCache;
-const CACHE_TTL = 2 * 1000; // 2 seconds (just enough to debounce the simultaneous requests from /check and /applications)
+const CACHE_TTL = 60 * 1000; // 60 seconds (1 minute)
 
 // Code-defined admins
 export const adminUsers: AdminUser[] = [

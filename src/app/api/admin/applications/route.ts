@@ -17,6 +17,16 @@ import { sendFormResponseToDiscord } from "@/lib/webhook";
 
 export const dynamic = 'force-dynamic';
 
+// In-memory cache for Google Sheets read operations to avoid rate limits
+interface SheetsCacheEntry {
+  data: any[];
+  timestamp: number;
+}
+const globalForSheetsCache = global as unknown as { sheetsCache: Map<string, SheetsCacheEntry> };
+const sheetsCache = globalForSheetsCache.sheetsCache || new Map<string, SheetsCacheEntry>();
+if (process.env.NODE_ENV !== 'production') globalForSheetsCache.sheetsCache = sheetsCache;
+const SHEETS_CACHE_TTL = 15 * 1000; // 15 seconds
+
 // Define column positions for each application type
 const COLUMN_POSITIONS = {
   whitelist: {
@@ -79,13 +89,23 @@ export async function GET() {
     const sheets = google.sheets({ version: 'v4', auth });
     let allApplications = [];
 
-    // Helper function to fetch applications with error handling
+    // Helper function to fetch applications with error handling and caching
     const fetchApplications = async (fetcher: Function, type: string) => {
       try {
         // Only fetch applications if admin has access to this section
         if (canAccessSection(adminAccess, type)) {
+          // Check cache first
+          const cached = sheetsCache.get(type);
+          if (cached && Date.now() - cached.timestamp < SHEETS_CACHE_TTL) {
+            console.log(`Returning cached ${type} applications (age: ${Math.round((Date.now() - cached.timestamp)/1000)}s)`);
+            return cached.data;
+          }
+
           const apps = await fetcher(sheets, session);
-          console.log(`Found ${apps.length} ${type} applications`);
+          console.log(`Found ${apps.length} ${type} applications from Google Sheets`);
+          
+          // Cache results
+          sheetsCache.set(type, { data: apps, timestamp: Date.now() });
           return apps;
         }
         return [];
@@ -283,6 +303,10 @@ export async function PUT(request: Request) {
       // Log error but don't fail the request if webhook fails
       console.error('Failed to send webhook notification or assign role:', webhookError);
     }
+
+    // Invalidate cache for this application type
+    sheetsCache.delete(type);
+    console.log(`Invalidated Sheets cache for type: ${type}`);
 
     return NextResponse.json({ success: true });
   } catch (error) {

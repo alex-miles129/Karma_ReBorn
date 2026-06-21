@@ -5,8 +5,8 @@ import { RulesContent } from '@/components/RulesContent';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Rules | Karma ReBorn',
-  description: 'Server rules and guidelines for Karma ReBorn',
+  title: 'Rules | India Town Roleplay',
+  description: 'Server rules and guidelines for India Town Roleplay',
 };
 
 export default function RulesPage() {

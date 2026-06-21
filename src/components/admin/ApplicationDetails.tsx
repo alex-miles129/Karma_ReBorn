@@ -8,6 +8,7 @@ export function ApplicationDetails({ application }: ApplicationDetailsProps) {
   const renderFields = () => {
     switch (application.type) {
       case 'whitelist':
+        const isAutomated = application.reviewedBy === 'Automated Quiz' || (!application.characterName && !application.backstory);
         return (
           <>
             <Field label="Status" value={application.status || 'PENDING'} />
@@ -17,56 +18,79 @@ export function ApplicationDetails({ application }: ApplicationDetailsProps) {
             <h3 className="text-lg font-semibold mt-4 mb-2">User Information</h3>
             <Field label="Discord ID" value={application.discordId} />
             
-            {/* Character Information */}
-            <h3 className="text-lg font-semibold mt-4 mb-2">Character Information</h3>
-            <Field 
-              label="Character Name" 
-              value={application.characterName}
-            />
-            <Field 
-              label="Do you have experience with other roleplaying games or servers? Please specify." 
-              value={application.experience}
-            />
-            <Field 
-              label="Provide a brief backstory for your main character" 
-              value={application.backstory}
-            />
-            
-            {/* Rules Understanding */}
-            <h3 className="text-lg font-semibold mt-4 mb-2">Rules Understanding</h3>
-            <Field 
-              label="What is powergaming? Provide an example." 
-              value={application.powergaming}
-            />
-            <Field 
-              label="Explain the 'New Life Rule' and how it affects your character after death." 
-              value={application.newLifeRule}
-            />
-            <Field 
-              label="What is RDM and VDM?" 
-              value={application.rdmVdm}
-            />
-            <Field 
-              label="Explain the concept of 'staying in character.' Why is it important?" 
-              value={application.stayingInCharacter}
-            />
-            <Field 
-              label="You witness a player breaking the rules. How do you handle the situation?" 
-              value={application.ruleBreaking}
-            />
-            <Field 
-              label="Your character is held at gunpoint during a robbery. How do you respond?" 
-              value={application.gunpoint}
-            />
-            
-            {/* Technical & Additional */}
-            <h3 className="text-lg font-semibold mt-4 mb-2">Technical & Additional Information</h3>
-            <Field label="Agrees To Rules" value={application.agreeToRules} />
-            <Field label="Has Microphone" value={application.hasMicrophone} />
-            <Field label="Memorable RP Experience" value={application.memorableExperience} />
-            <Field label="Is Streamer" value={application.streamer} />
-            {application.streamerLink && (
-              <Field label="Streamer Link" value={application.streamerLink} />
+            {isAutomated ? (
+              <>
+                {/* Quiz Information */}
+                <h3 className="text-lg font-semibold mt-4 mb-2">Quiz Information</h3>
+                <div className={`p-4 rounded-lg border text-sm max-w-md ${
+                  application.status === 'approved' 
+                    ? "bg-emerald-950/20 border-emerald-900/30 text-emerald-200" 
+                    : "bg-red-950/20 border-red-900/30 text-red-200"
+                }`}>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-zinc-400">Result:</span>
+                    <span className="font-bold">{application.status === 'approved' ? 'PASSED (WHITELISTED)' : 'FAILED'}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-zinc-400">Details:</span>
+                    <span className="font-semibold">{application.memorableExperience || 'N/A'}</span>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* Character Information */}
+                <h3 className="text-lg font-semibold mt-4 mb-2">Character Information</h3>
+                <Field 
+                  label="Character Name" 
+                  value={application.characterName}
+                />
+                <Field 
+                  label="Do you have experience with other roleplaying games or servers? Please specify." 
+                  value={application.experience}
+                />
+                <Field 
+                  label="Provide a brief backstory for your main character" 
+                  value={application.backstory}
+                />
+                
+                {/* Rules Understanding */}
+                <h3 className="text-lg font-semibold mt-4 mb-2">Rules Understanding</h3>
+                <Field 
+                  label="What is powergaming? Provide an example." 
+                  value={application.powergaming}
+                />
+                <Field 
+                  label="Explain the 'New Life Rule' and how it affects your character after death." 
+                  value={application.newLifeRule}
+                />
+                <Field 
+                  label="What is RDM and VDM?" 
+                  value={application.rdmVdm}
+                />
+                <Field 
+                  label="Explain the concept of 'staying in character.' Why is it important?" 
+                  value={application.stayingInCharacter}
+                />
+                <Field 
+                  label="You witness a player breaking the rules. How do you handle the situation?" 
+                  value={application.ruleBreaking}
+                />
+                <Field 
+                  label="Your character is held at gunpoint during a robbery. How do you respond?" 
+                  value={application.gunpoint}
+                />
+                
+                {/* Technical & Additional */}
+                <h3 className="text-lg font-semibold mt-4 mb-2">Technical & Additional Information</h3>
+                <Field label="Agrees To Rules" value={application.agreeToRules} />
+                <Field label="Has Microphone" value={application.hasMicrophone} />
+                <Field label="Memorable RP Experience" value={application.memorableExperience} />
+                <Field label="Is Streamer" value={application.streamer} />
+                {application.streamerLink && (
+                  <Field label="Streamer Link" value={application.streamerLink} />
+                )}
+              </>
             )}
           </>
         );
@@ -188,7 +212,7 @@ export function ApplicationDetails({ application }: ApplicationDetailsProps) {
               description="Notable cases, roles, outcomes, precedents set"
             />
             <Field 
-              label="Why do you want to join DOJ in Karma ReBorn?" 
+              label="Why do you want to join DOJ in India Town Roleplay?" 
               value={application.joinReason} 
             />
           </>
@@ -293,7 +317,7 @@ interface FieldProps {
 }
 
 function Field({ label, value, description }: FieldProps) {
-  if (value === undefined || value === null) return null;
+  if (value === undefined || value === null || value === '') return null;
   
   // Convert boolean values to Yes/No
   const displayValue = typeof value === 'boolean' ? (value ? 'Yes' : 'No') : value;

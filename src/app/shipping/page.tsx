@@ -2,8 +2,8 @@ import { PageLayout } from '@/components/PageLayout';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Shipping Policy | Karma ReBorn',
-  description: 'Shipping and delivery policy for Karma ReBorn',
+  title: 'Shipping Policy | India Town Roleplay',
+  description: 'Shipping and delivery policy for India Town Roleplay',
 };
 
 export default function ShippingPage() {
@@ -19,7 +19,7 @@ export default function ShippingPage() {
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold">Digital Products and Services</h2>
             <p>
-              Karma ReBorn primarily offers digital products and services including:
+              India Town Roleplay primarily offers digital products and services including:
             </p>
             <ul className="list-disc pl-6 space-y-2">
               <li>Premium memberships</li>
@@ -45,7 +45,7 @@ export default function ShippingPage() {
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold">Physical Products</h2>
             <p>
-              Currently, Karma ReBorn does not offer physical products for sale. If this changes 
+              Currently, India Town Roleplay does not offer physical products for sale. If this changes 
               in the future, shipping information will be updated accordingly.
             </p>
           </section>

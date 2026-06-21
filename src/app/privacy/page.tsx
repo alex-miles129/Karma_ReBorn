@@ -2,8 +2,8 @@ import { PageLayout } from '@/components/PageLayout';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Karma ReBorn',
-  description: 'Privacy Policy for Karma ReBorn',
+  title: 'Privacy Policy | India Town Roleplay',
+  description: 'Privacy Policy for India Town Roleplay',
 };
 
 export default function PrivacyPage() {

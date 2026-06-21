@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useSession } from 'next-auth/react';
 import { redirect, useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,6 +9,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
 import { toast } from "@/components/ui/use-toast";
 import { ApplicationDetails } from "@/components/admin/ApplicationDetails";
 import { Application } from "@/types/applications";
@@ -33,6 +34,15 @@ export default function AdminPage() {
   const router = useRouter();
   const [selectedSection, setSelectedSection] = useState<string>('whitelist');
   const [selectedStatus, setSelectedStatus] = useState<'pending' | 'approved'>('pending');
+
+  // Whitelist has no pending status, so default to approved (processed)
+  useEffect(() => {
+    if (selectedSection === 'whitelist') {
+      setSelectedStatus('approved');
+    } else {
+      setSelectedStatus('pending');
+    }
+  }, [selectedSection]);
 
   const applicationSections: ApplicationSection[] = [
     {
@@ -68,7 +78,7 @@ export default function AdminPage() {
   ];
 
   // Function to fetch applications
-  const fetchApplications = async () => {
+  const fetchApplications = useCallback(async () => {
     try {
       setError(null);
       const response = await fetch('/api/admin/applications', {
@@ -109,11 +119,11 @@ export default function AdminPage() {
         duration: 3000,
       });
     }
-  };
+  }, [toast]);
 
+  // Effect 1: Check admin authorization status periodically
   useEffect(() => {
     let isMounted = true;
-    let initialFetchDone = false;
 
     const checkAdminStatus = async () => {
       if (session?.user) {
@@ -124,7 +134,7 @@ export default function AdminPage() {
           if (!isMounted) return;
 
           if (data.isAdmin) {
-            setIsAdmin(data.isAdmin);
+            setIsAdmin(true);
             setAdminAccess({
               discordId: data.discordId,
               designation: data.designation
@@ -137,20 +147,8 @@ export default function AdminPage() {
                 setSelectedSection(prev => prev === 'whitelist' ? data.designation : prev);
               }
             }
-            if (!initialFetchDone) {
-              await fetchApplications();
-              initialFetchDone = true;
-            }
           } else {
-            if (isAdmin) {
-              // User had admin access but lost it
-              toast({
-                title: 'Not Authorized',
-                description: 'Your admin access has been revoked.',
-                variant: 'destructive',
-                duration: 5000,
-              });
-            }
+            setIsAdmin(false);
             router.push('/profile');
           }
         } catch (error) {
@@ -160,26 +158,38 @@ export default function AdminPage() {
           if (isMounted) setIsLoading(false);
         }
       } else if (status !== "loading") {
-        if (isMounted) router.push('/');
+        if (isMounted) {
+          setIsLoading(false);
+          router.push('/');
+        }
       }
     };
 
     checkAdminStatus();
-    const interval = setInterval(checkAdminStatus, 5000);
+    const interval = setInterval(checkAdminStatus, 10000); // Check authorization status every 10s
 
     return () => {
       isMounted = false;
       clearInterval(interval);
     };
-  }, [session, status, router, isAdmin]);
+  }, [session, status, router]);
 
-  // Set up periodic refresh
+  // Effect 2: Fetch applications when confirmed as admin
   useEffect(() => {
+    let isMounted = true;
+
     if (isAdmin) {
-      const interval = setInterval(fetchApplications, 30000);
-      return () => clearInterval(interval);
+      fetchApplications();
+      const interval = setInterval(() => {
+        if (isMounted) fetchApplications();
+      }, 30000); // Refresh applications list every 30 seconds
+
+      return () => {
+        isMounted = false;
+        clearInterval(interval);
+      };
     }
-  }, [isAdmin]);
+  }, [isAdmin, fetchApplications]);
 
   const handleAction = async (application: Application, action: 'approved' | 'rejected') => {
     try {
@@ -334,10 +344,16 @@ export default function AdminPage() {
                 <CardDescription className="text-xs">
                   {applicationSections.find(s => s.id === selectedSection)?.description || 'Review applications'}
                 </CardDescription>
-                <Tabs defaultValue="pending" className="w-full" onValueChange={(value) => setSelectedStatus(value as 'pending' | 'approved')}>
+                <Tabs value={selectedStatus} className="w-full" onValueChange={(value) => setSelectedStatus(value as 'pending' | 'approved')}>
                   <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="pending" className="text-xs">Pending</TabsTrigger>
-                    <TabsTrigger value="approved" className="text-xs">Processed</TabsTrigger>
+                    {selectedSection !== 'whitelist' ? (
+                      <>
+                        <TabsTrigger value="pending" className="text-xs">Pending</TabsTrigger>
+                        <TabsTrigger value="approved" className="text-xs">Processed</TabsTrigger>
+                      </>
+                    ) : (
+                      <TabsTrigger value="approved" className="col-span-2 text-xs">Processed</TabsTrigger>
+                    )}
                   </TabsList>
                 </Tabs>
               </CardHeader>
@@ -361,16 +377,32 @@ export default function AdminPage() {
                             <Button
                               variant="ghost"
                               className={cn(
-                                "w-full justify-start px-3 py-2 text-xs",
+                                "w-full justify-start px-3 py-3 text-xs h-auto",
                                 selectedApp?.id === app.id && "bg-accent"
                               )}
                               onClick={() => setSelectedApp(app)}
                             >
-                              <div className="flex flex-col items-start gap-1">
-                                <span className="font-medium">Application from {app.username || 'Unknown'}</span>
-                                <span className="text-[10px] text-muted-foreground">
-                                  {new Date(app.submittedAt).toLocaleDateString()}
-                                </span>
+                              <div className="flex w-full items-center justify-between gap-4 text-left">
+                                <div className="flex flex-col items-start gap-1">
+                                  <span className="font-semibold text-sm">
+                                    {app.username || 'Unknown'}
+                                  </span>
+                                  <span className="text-[10px] text-muted-foreground">
+                                    {new Date(app.submittedAt).toLocaleString()}
+                                  </span>
+                                </div>
+                                {app.type === 'whitelist' && (
+                                  <Badge 
+                                    className={cn(
+                                      "text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 pointer-events-none rounded",
+                                      app.status === 'approved' 
+                                        ? "bg-emerald-950/80 text-emerald-400 border border-emerald-800/40 hover:bg-emerald-950/80" 
+                                        : "bg-red-950/80 text-red-400 border border-red-800/40 hover:bg-red-950/80"
+                                    )}
+                                  >
+                                    {app.status === 'approved' ? 'Passed' : 'Failed'}
+                                  </Badge>
+                                )}
                               </div>
                             </Button>
                             <Separator className="my-2" />
@@ -436,7 +468,7 @@ export default function AdminPage() {
       <div className="border-t flex-shrink-0 py-3">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-[10px] text-center text-muted-foreground">
-            © {new Date().getFullYear()} Karma ReBorn. All rights reserved.
+            © {new Date().getFullYear()} India Town Roleplay. All rights reserved.
           </p>
         </div>
       </div>

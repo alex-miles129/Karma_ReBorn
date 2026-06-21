@@ -6,7 +6,7 @@ const features = [
   {
     icon: Users,
     title: 'Immersive Storytelling',
-    description: 'Create a unique character and build your own legacy. Whether you want to be a humble citizen, a ruthless gang leader, or a highly decorated officer, your choices shape the city of Karma ReBorn.'
+    description: 'Create a unique character and build your own legacy. Whether you want to be a humble citizen, a ruthless gang leader, or a highly decorated officer, your choices shape the city of India Town Roleplay.'
   },
   {
     icon: Briefcase,

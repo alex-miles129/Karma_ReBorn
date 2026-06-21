@@ -35,7 +35,7 @@ interface UpiPaymentOptions {
 }
 
 const DEFAULT_UPI_PAYEE_ADDRESS = 'mastermindaggaming@oksbi';
-const DEFAULT_UPI_PAYEE_NAME = 'Karma ReBorn';
+const DEFAULT_UPI_PAYEE_NAME = 'India Town Roleplay';
 const DEFAULT_UPI_CURRENCY = 'INR';
 
 // Generate secure order ID

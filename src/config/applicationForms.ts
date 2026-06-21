@@ -3,7 +3,7 @@ import { ApplicationFormConfig } from '../types/applications';
 export const emsFormConfig: ApplicationFormConfig = {
   type: 'ems',
   title: 'EMS Application Form',
-  description: 'Apply to join the Emergency Medical Services team in Karma ReBorn.',
+  description: 'Apply to join the Emergency Medical Services team in India Town Roleplay.',
   questions: [
     // OOC Section
     {
@@ -76,7 +76,7 @@ export const emsFormConfig: ApplicationFormConfig = {
       label: 'Address',
       type: 'text',
       required: true,
-      placeholder: 'Your character\'s current residential address in Karma ReBorn',
+      placeholder: 'Your character\'s current residential address in India Town Roleplay',
       section: 'ic'
     },
     {
@@ -97,10 +97,10 @@ export const emsFormConfig: ApplicationFormConfig = {
     },
     {
       id: 'icJoinReason',
-      label: 'Why do you want to become a medic in Karma ReBorn?',
+      label: 'Why do you want to become a medic in India Town Roleplay?',
       type: 'textarea',
       required: true,
-      placeholder: 'From your character\'s perspective, explain their motivation to join the EMS department in Karma ReBorn. What events or experiences shaped this decision?',
+      placeholder: 'From your character\'s perspective, explain their motivation to join the EMS department in India Town Roleplay. What events or experiences shaped this decision?',
       section: 'ic'
     }
   ]
@@ -109,7 +109,7 @@ export const emsFormConfig: ApplicationFormConfig = {
 export const policeFormConfig: ApplicationFormConfig = {
   type: 'police',
   title: 'Police Department Application Form',
-  description: 'Apply to join the Karma ReBorn Police Department.',
+  description: 'Apply to join the India Town Roleplay Police Department.',
   questions: [
     // OOC Section
     {
@@ -187,7 +187,7 @@ export const policeFormConfig: ApplicationFormConfig = {
     },
     {
       id: 'fitnessForRole',
-      label: 'What makes you fit to serve in the Karma ReBorn PD?',
+      label: 'What makes you fit to serve in the India Town Roleplay PD?',
       type: 'textarea',
       required: true,
       placeholder: 'Describe your character\'s qualities, skills, and experiences that make them suitable for law enforcement. Include both physical and mental attributes.',
@@ -215,7 +215,7 @@ export const policeFormConfig: ApplicationFormConfig = {
 export const dojFormConfig: ApplicationFormConfig = {
   type: 'doj',
   title: 'Department of Justice Application Form',
-  description: 'Apply to join the Karma ReBorn Department of Justice.',
+  description: 'Apply to join the India Town Roleplay Department of Justice.',
   questions: [
     // OOC Section
     {
@@ -301,7 +301,7 @@ export const dojFormConfig: ApplicationFormConfig = {
     },
     {
       id: 'joinReason',
-      label: 'Why do you want to join DOJ in Karma ReBorn?',
+      label: 'Why do you want to join DOJ in India Town Roleplay?',
       type: 'textarea',
       required: true,
       placeholder: 'Explain your character\'s motivation for joining the Department of Justice. What do they hope to achieve in this role?',

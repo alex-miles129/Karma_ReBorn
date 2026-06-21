@@ -9,12 +9,12 @@ import {
 
 const faqs = [
   {
-    question: "What is Karma ReBorn?",
-    answer: "Karma ReBorn is a premium GTA V roleplay server that focuses on high-quality, immersive storytelling. We provide a dynamic environment where your choices matter, whether you play as a law-abiding citizen, law enforcement, or a criminal mastermind."
+    question: "What is India Town Roleplay?",
+    answer: "India Town Roleplay is a premium GTA V roleplay server that focuses on high-quality, immersive storytelling. We provide a dynamic environment where your choices matter, whether you play as a law-abiding citizen, law enforcement, or a criminal mastermind."
   },
   {
     question: "How do I join the server?",
-    answer: "To join Karma ReBorn, you need to submit an application through our website. Once approved by our team, you will receive the whitelist role in Discord, granting you access to join the server and begin your story."
+    answer: "To join India Town Roleplay, you need to submit an application through our website. Once approved by our team, you will receive the whitelist role in Discord, granting you access to join the server and begin your story."
   },
   {
     question: "What are subscriptions for?",

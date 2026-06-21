@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Karma ReBorn',
-  description: 'Get in touch with Karma ReBorn team',
+  title: 'Contact Us | India Town Roleplay',
+  description: 'Get in touch with India Town Roleplay team',
 };
 
 export default function ContactLayout({

@@ -39,7 +39,7 @@ export const teamMembers: TeamMember[] = [
   
 ];
 
-export const siteName = "Karma ReBorn";
+export const siteName = "India Town Roleplay";
 
 export const discordInviteLink = "https://discord.gg/ydtT9UzQUz"; // General Discord invite
 export const fivemJoinLink = "fivem://connect/pmgjr8"; // Replace with actual FiveM server IP or link
@@ -79,7 +79,7 @@ export const Icons = {
   logo: () => (
     <Image
       src="/logo.png"
-      alt="Karma ReBorn Logo"
+      alt="India Town Roleplay Logo"
       width={48}
       height={48}
       unoptimized

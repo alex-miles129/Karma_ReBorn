@@ -11,10 +11,11 @@ import { WhitelistApplicationForm } from "@/components/WhitelistApplicationForm"
 import { DepartmentApplicationForm } from "@/components/DepartmentApplicationForm"
 import { applicationForms } from "@/config/applicationForms"
 import { Metadata } from 'next';
+import { getWhitelistCooldown } from "@/lib/whitelist-server";
 
 export const metadata: Metadata = {
-  title: 'Applications | Karma ReBorn',
-  description: 'Submit applications for whitelist and department positions in Karma ReBorn',
+  title: 'Applications | India Town Roleplay',
+  description: 'Submit applications for whitelist and department positions in India Town Roleplay',
 };
 
 const DISCORD_SERVER_ID = process.env.DISCORD_SERVER_ID as string;
@@ -68,6 +69,11 @@ export default async function ApplicationsPage() {
   const hasWhitelistRole = userId 
     ? await checkUserHasRole(userId, WHITELIST_ROLE_ID)
     : false;
+
+  // Check if user has an active whitelist cooldown
+  const cooldownRemaining = (userId && !hasWhitelistRole)
+    ? await getWhitelistCooldown(userId)
+    : 0;
 
   const departmentIcons = {
     ems: Siren,
@@ -151,7 +157,7 @@ export default async function ApplicationsPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <WhitelistApplicationForm disabled={hasWhitelistRole} />
+                  <WhitelistApplicationForm disabled={hasWhitelistRole} cooldownRemaining={cooldownRemaining} />
                 </CardContent>
               </Card>
 

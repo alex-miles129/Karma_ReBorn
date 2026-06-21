@@ -6,7 +6,7 @@ const ruleCategories = [
   {
     id: 'general',
     title: 'General Rules',
-    subtitle: 'Standards to keep roleplay immersive, fair, and enjoyable for everyone in Karma ReBorn.',
+    subtitle: 'Standards to keep roleplay immersive, fair, and enjoyable for everyone in India Town Roleplay.',
     featured: {
       tag: 'BUSINESS POLICY UPDATE',
       title: 'ACTIVE BUSINESS MANAGEMENT AND NO REFUND TERMS',
@@ -149,7 +149,7 @@ export function RulesContent() {
       <div className="w-full md:w-72 lg:w-80 shrink-0">
         <div className="sticky top-24 bg-[#0a0a0f]/80 backdrop-blur-xl border border-white/5 rounded-2xl p-6 shadow-2xl">
           <div className="mb-6">
-            <p className="text-[10px] font-bold tracking-[0.2em] text-gray-500 mb-2 uppercase">Karma ReBorn</p>
+            <p className="text-[10px] font-bold tracking-[0.2em] text-gray-500 mb-2 uppercase">India Town Roleplay</p>
             <h2 className="text-3xl font-black text-white tracking-tight">Rules Hub</h2>
           </div>
           
@@ -252,12 +252,12 @@ export function RulesContent() {
 
               {/* Policy Header Card */}
               <div className="bg-white/[0.02] border border-white/10 rounded-2xl p-8 sm:p-10 mb-8">
-                <p className="text-[10px] font-bold tracking-[0.2em] text-gray-400 mb-4 uppercase">Karma Roleplay Policy</p>
+                <p className="text-[10px] font-bold tracking-[0.2em] text-gray-400 mb-4 uppercase">India Town Roleplay Policy</p>
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-6 leading-[1.1]">
                   Active Business Management and No Refund Policy
                 </h1>
                 <p className="text-gray-300 leading-relaxed max-w-3xl text-sm sm:text-base">
-                  This page outlines how business ownership is handled and how purchases are treated in Karma ReBorn. The goal is simple: clear expectations, fair action, and smooth operations for everyone.
+                  This page outlines how business ownership is handled and how purchases are treated in India Town Roleplay. The goal is simple: clear expectations, fair action, and smooth operations for everyone.
                 </p>
               </div>
 
@@ -278,7 +278,7 @@ export function RulesContent() {
                   <div className="space-y-4 text-sm text-gray-300 leading-relaxed">
                     <p>All payments and purchases are final.</p>
                     <p>No refunds will be issued under any circumstances.</p>
-                    <p>To claim your business or purchase, create a ticket with the Karma ReBorn Team.</p>
+                    <p>To claim your business or purchase, create a ticket with the India Town Roleplay Team.</p>
                   </div>
                 </div>
               </div>
@@ -287,11 +287,11 @@ export function RulesContent() {
               <h2 className="text-2xl font-bold text-white mb-6">Key Guidelines</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
-                  { id: '01', title: 'Business Reporting and Communication', desc: 'Report issues promptly to the Karma ReBorn Team for quick resolutions.' },
+                  { id: '01', title: 'Business Reporting and Communication', desc: 'Report issues promptly to the India Town Roleplay Team for quick resolutions.' },
                   { id: '02', title: 'Flexible Rules and Fair Warnings', desc: 'Rules adapt to community needs, and players receive warnings before serious actions are taken.' },
-                  { id: '03', title: 'Karma ReBorn Standards and Fun', desc: 'Follow Karma ReBorn standards to keep roleplay enjoyable and fair for everyone.' },
+                  { id: '03', title: 'India Town Roleplay Standards and Fun', desc: 'Follow India Town Roleplay standards to keep roleplay enjoyable and fair for everyone.' },
                   { id: '04', title: 'Clear Rules and Legal Compliance', desc: 'Clear rule enforcement ensures fairness and respect for all players.' },
-                  { id: '05', title: 'Continuous Improvement', desc: 'Karma ReBorn evolves with regular updates to keep the experience fresh and fun.' },
+                  { id: '05', title: 'Continuous Improvement', desc: 'India Town Roleplay evolves with regular updates to keep the experience fresh and fun.' },
                 ].map(guide => (
                   <div key={guide.id} className="bg-white/[0.02] border border-white/5 rounded-xl p-6 hover:border-white/10 transition-colors">
                     <p className="text-[10px] font-bold tracking-[0.2em] text-gray-500 mb-3 uppercase">Guideline {guide.id}</p>

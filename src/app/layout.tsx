@@ -16,19 +16,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Karma ReBorn',
-  description: 'Step into the blood-soaked streets of Karma ReBorn. No mercy, no second chances. Claim your turf or get buried under it. Only the ruthless survive.',
+  title: 'India Town Roleplay',
+  description: 'Step into the blood-soaked streets of India Town Roleplay. No mercy, no second chances. Claim your turf or get buried under it. Only the ruthless survive.',
   openGraph: {
-    title: 'Karma ReBorn',
-    description: 'Step into the blood-soaked streets of Karma ReBorn. No mercy, no second chances. Claim your turf or get buried under it. Only the ruthless survive.',
+    title: 'India Town Roleplay',
+    description: 'Step into the blood-soaked streets of India Town Roleplay. No mercy, no second chances. Claim your turf or get buried under it. Only the ruthless survive.',
     url: 'https://karma-re-born.vercel.app/',
-    siteName: 'Karma ReBorn',
+    siteName: 'India Town Roleplay',
     images: [
       {
         url: 'https://r2.fivemanage.com/fIzwGUYZR5rnjUFPnGj3B/ChatGPTImageMay10202603_11_35PM.png',
         width: 1200,
         height: 630,
-        alt: 'Karma ReBorn Banner',
+        alt: 'India Town Roleplay Banner',
       },
     ],
     locale: 'en_US',
@@ -36,8 +36,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Karma ReBorn',
-    description: 'Step into the blood-soaked streets of Karma ReBorn. No mercy, no second chances. Claim your turf or get buried under it. Only the ruthless survive.',
+    title: 'India Town Roleplay',
+    description: 'Step into the blood-soaked streets of India Town Roleplay. No mercy, no second chances. Claim your turf or get buried under it. Only the ruthless survive.',
     images: ['https://r2.fivemanage.com/fIzwGUYZR5rnjUFPnGj3B/ChatGPTImageMay10202603_11_35PM.png'],
   },
 };

@@ -14,16 +14,16 @@ export function HeroSection() {
   const [isAllowlisted, setIsAllowlisted] = useState<boolean | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState<"login" | "allowlist" | null>(null);
-  
+
   const { data: session } = useSession();
   const router = useRouter();
-  
+
   useEffect(() => {
     setMounted(true);
-    
+
     const fetchPlayers = async () => {
       try {
-        const res = await fetch('https://servers-frontend.fivem.net/api/servers/single/3yg5rzz');
+        const res = await fetch('/api/fivem/players');
         const data = await res.json();
         if (data && data.Data) {
           setPlayerCount(data.Data.clients);
@@ -33,7 +33,7 @@ export function HeroSection() {
         console.error("Failed to fetch player count", e);
       }
     };
-    
+
     fetchPlayers();
     const interval = setInterval(fetchPlayers, 2000);
     return () => clearInterval(interval);
@@ -102,13 +102,13 @@ export function HeroSection() {
               Welcome to
             </p>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-foreground via-[#0c0c18] to-foreground">
-              Karma ReBorn
+              India Town Roleplay
             </h1>
             <p className="text-sm sm:text-base md:text-lg text-foreground/80 max-w-lg">
               A high-intensity survival roleplay experience set in a collapsing city. Forge alliances, make impossible choices,
               and carve your legacy out of the chaos.
             </p>
-            
+
             <div className="mt-8 flex flex-row items-center gap-4">
               <button
                 onClick={(e) => {
@@ -120,7 +120,7 @@ export function HeroSection() {
                     setModalType("allowlist");
                     setIsModalOpen(true);
                   } else if (isAllowlisted === true) {
-                    window.location.href = "fivem://connect/3yg5rzz";
+                    window.location.href = "fivem://connect/ma4erd";
                   }
                 }}
                 className="relative flex items-center justify-center bg-[#11141e] text-white px-8 py-3.5 rounded-xl font-bold tracking-wider transition-transform hover:scale-105 hover:shadow-[0_0_15px_rgba(220,38,38,0.5)]"
@@ -142,7 +142,7 @@ export function HeroSection() {
                 </span>
               </div>
             </div>
-            
+
             <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
               <DialogContent className="sm:max-w-[425px] bg-background/95 backdrop-blur-md border-border/50">
                 <DialogHeader>
@@ -150,8 +150,8 @@ export function HeroSection() {
                     {modalType === "login" ? "Authentication Required" : "Whitelist Required"}
                   </DialogTitle>
                   <DialogDescription className="text-center pt-2">
-                    {modalType === "login" 
-                      ? "You must be signed in to play Karma ReBorn. Please sign in with Discord to continue."
+                    {modalType === "login"
+                      ? "You must be signed in to play India Town Roleplay. Please sign in with Discord to continue."
                       : "You must be whitelisted to join the server. Please apply for the whitelist first."}
                   </DialogDescription>
                 </DialogHeader>

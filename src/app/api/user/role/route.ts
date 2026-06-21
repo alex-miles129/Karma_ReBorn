@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 
 const DISCORD_SERVER_ID = process.env.DISCORD_SERVER_ID as string;
 const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN as string;
-const WHITELIST_ROLE_ID = "1489608409061003505"; // Allowlisted
+const WHITELIST_ROLE_ID = "1518143675111051317"; // Allowlisted
 
 export async function GET() {
   try {

@@ -20,8 +20,8 @@ export const metadata: Metadata = {
 
 const DISCORD_SERVER_ID = process.env.DISCORD_SERVER_ID as string;
 const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN as string;
-const REQUIRED_ROLE_ID = "1489608409061003505"; // Allowlisted
-const WHITELIST_ROLE_ID = "1489608409061003505"; // Allowlisted
+const REQUIRED_ROLE_ID = "1518143675111051317"; // Allowlisted
+const WHITELIST_ROLE_ID = "1518143675111051317"; // Allowlisted
 
 async function checkUserHasRole(userId: string, roleId: string): Promise<boolean> {
   try {

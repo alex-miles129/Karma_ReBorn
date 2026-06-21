@@ -268,7 +268,7 @@ export async function PUT(request: Request) {
         // Directly assign role via Discord API if approved
         if (action === 'accept' && botToken && applicantId) {
           const ASSIGN_ROLES: Record<string, string> = {
-            'whitelist': '1489608409061003505',
+            'whitelist': '1518143675111051317',
             'doj': '1489608401444012223',
             'police': '1489608403511808232',
             'ems': '1489608414857269370',

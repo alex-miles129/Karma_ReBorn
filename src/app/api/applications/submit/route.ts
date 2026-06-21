@@ -129,7 +129,7 @@ export async function POST(req: Request) {
     let roleAssigned = false;
     const guildId = process.env.DISCORD_SERVER_ID || '';
     const botToken = process.env.DISCORD_BOT_TOKEN || '';
-    const whitelistRoleId = '1489608409061003505';
+    const whitelistRoleId = '1518143675111051317';
 
     if (passed) {
       if (guildId && botToken) {

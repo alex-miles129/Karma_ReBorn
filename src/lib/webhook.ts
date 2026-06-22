@@ -39,9 +39,43 @@ export async function sendFormResponseToDiscord(
       const isAccept = action === 'accept';
       const color = isAccept ? 3066993 : 15158332; // Green for approved, Red for rejected/failed
       const statusText = isAccept ? 'APPROVED' : 'REJECTED';
-      const bannerUrl = isAccept 
-        ? 'https://r2.fivemanage.com/fIzwGUYZR5rnjUFPnGj3B/whitelist_accept.png' 
-        : 'https://r2.fivemanage.com/fIzwGUYZR5rnjUFPnGj3B/whitelist_rejected.png';
+
+      const BANNER_MAP: Record<string, { accept: string; reject: string }> = {
+        'whitelist': {
+          accept: 'https://r2.fivemanage.com/tSnne9Eh3q5Hb1Wd3SWQI/whitelist_accept.png',
+          reject: 'https://r2.fivemanage.com/tSnne9Eh3q5Hb1Wd3SWQI/whitelist_reject.png'
+        },
+        'pd': {
+          accept: 'https://r2.fivemanage.com/tSnne9Eh3q5Hb1Wd3SWQI/pd_accept.png',
+          reject: 'https://r2.fivemanage.com/tSnne9Eh3q5Hb1Wd3SWQI/pd_reject.png'
+        },
+        'police': {
+          accept: 'https://r2.fivemanage.com/tSnne9Eh3q5Hb1Wd3SWQI/pd_accept.png',
+          reject: 'https://r2.fivemanage.com/tSnne9Eh3q5Hb1Wd3SWQI/pd_reject.png'
+        },
+        'ems': {
+          accept: 'https://r2.fivemanage.com/tSnne9Eh3q5Hb1Wd3SWQI/ems_accept.png',
+          reject: 'https://r2.fivemanage.com/tSnne9Eh3q5Hb1Wd3SWQI/ems_reject.png'
+        },
+        'doj': {
+          accept: 'https://r2.fivemanage.com/tSnne9Eh3q5Hb1Wd3SWQI/doj_accept.png',
+          reject: 'https://r2.fivemanage.com/tSnne9Eh3q5Hb1Wd3SWQI/doj_reject.png'
+        },
+        'doc': {
+          accept: 'https://r2.fivemanage.com/tSnne9Eh3q5Hb1Wd3SWQI/doc_accept.png',
+          reject: 'https://r2.fivemanage.com/tSnne9Eh3q5Hb1Wd3SWQI/doc_reject.png'
+        },
+        'staff': {
+          accept: 'https://r2.fivemanage.com/tSnne9Eh3q5Hb1Wd3SWQI/staff_accept.png',
+          reject: 'https://r2.fivemanage.com/tSnne9Eh3q5Hb1Wd3SWQI/staff_reject.png'
+        }
+      };
+
+      const bannerUrl = BANNER_MAP[formType]
+        ? (action === 'accept' ? BANNER_MAP[formType].accept : BANNER_MAP[formType].reject)
+        : (isAccept 
+            ? 'https://r2.fivemanage.com/fIzwGUYZR5rnjUFPnGj3B/whitelist_accept.png' 
+            : 'https://r2.fivemanage.com/fIzwGUYZR5rnjUFPnGj3B/whitelist_rejected.png');
 
       const embed: any = {
         title: `Application Response - ${formType.toUpperCase()}`,

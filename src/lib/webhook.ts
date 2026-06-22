@@ -25,7 +25,7 @@ export async function sendFormResponseToDiscord(
   // 1. Direct Discord Message: For all forms when botToken is available
   if (botToken) {
     const CHANNEL_MAP: Record<string, string> = {
-      'whitelist': '1518143838957469806',
+      'whitelist': '1518667724111352028',
       'police': '1518143850248540371',
       'ems': '1518143853444599869',
       'doj': '1518143844539961375',

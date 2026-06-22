@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: 'India Town Roleplay',
     images: [
       {
-        url: 'https://r2.fivemanage.com/tSnne9Eh3q5Hb1Wd3SWQI/ChatGPTImageJun22202612_47_20PM.png',
+        url: 'https://r2.fivemanage.com/tSnne9Eh3q5Hb1Wd3SWQI/ChatGPTImageJun22202601_24_19PM.png',
         width: 1200,
         height: 630,
         alt: 'India Town Roleplay Banner',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'India Town Roleplay',
     description: 'Step into the blood-soaked streets of India Town Roleplay. No mercy, no second chances. Claim your turf or get buried under it. Only the ruthless survive.',
-    images: ['https://r2.fivemanage.com/tSnne9Eh3q5Hb1Wd3SWQI/ChatGPTImageJun22202612_47_20PM.png'],
+    images: ['https://r2.fivemanage.com/tSnne9Eh3q5Hb1Wd3SWQI/ChatGPTImageJun22202601_24_19PM.png'],
   },
 };
 

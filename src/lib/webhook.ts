@@ -22,70 +22,84 @@ export async function sendFormResponseToDiscord(
   const webhookUrl = process.env.WEBHOOK_URL || 'http://pnode-01.botnix.cloud:9034/webhook/form-response';
   const apiKey = process.env.WEBHOOK_API_KEY || '';
 
-  // 1. Direct Discord Message: ONLY for the automated 'whitelist' quiz
-  if (formType === 'whitelist' && botToken) {
-    const channelId = '1518143838957469806'; // #whitelist-response
-    const isAccept = action === 'accept';
-    const color = isAccept ? 3066993 : 15158332; // Green for approved, Red for rejected/failed
-    const statusText = isAccept ? 'APPROVED' : 'REJECTED';
-    const bannerUrl = isAccept 
-      ? 'https://r2.fivemanage.com/fIzwGUYZR5rnjUFPnGj3B/whitelist_accept.png' 
-      : 'https://r2.fivemanage.com/fIzwGUYZR5rnjUFPnGj3B/whitelist_rejected.png';
-
-    const embed = {
-      title: `Application Response - WHITELIST`,
-      color: color,
-      fields: [
-        {
-          name: "Applicant Name",
-          value: applicantName || 'Unknown',
-          inline: true
-        },
-        {
-          name: "Discord ID",
-          value: applicantId ? `<@${applicantId}> (${applicantId})` : 'Unknown',
-          inline: true
-        },
-        {
-          name: "Status",
-          value: `**${statusText}**`,
-          inline: true
-        },
-        {
-          name: "Details",
-          value: reason || (isAccept ? 'Your application has been accepted! Please check your roles and channels.' : 'Your application was not approved at this time.'),
-          inline: false
-        }
-      ],
-      image: {
-        url: bannerUrl
-      },
-      timestamp: new Date().toISOString(),
-      footer: {
-        text: `Processed By: ${adminName || 'Automated System'} • India Town Roleplay`
-      }
+  // 1. Direct Discord Message: For all forms when botToken is available
+  if (botToken) {
+    const CHANNEL_MAP: Record<string, string> = {
+      'whitelist': '1518143838957469806',
+      'police': '1518143850248540371',
+      'ems': '1518143853444599869',
+      'doj': '1518143844539961375',
+      'doc': '1518289246962581514',
+      'staff': '1518143841717456896',
+      'gang': '1518143855604535386'
     };
 
-    try {
-      console.log(`Attempting to send direct Discord channel message to: ${channelId}`);
-      const response = await fetch(`https://discord.com/api/v10/channels/${channelId}/messages`, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bot ${botToken}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ content: applicantId ? `<@${applicantId}>` : '', embeds: [embed] })
-      });
+    const channelId = CHANNEL_MAP[formType];
+    if (channelId) {
+      const isAccept = action === 'accept';
+      const color = isAccept ? 3066993 : 15158332; // Green for approved, Red for rejected/failed
+      const statusText = isAccept ? 'APPROVED' : 'REJECTED';
+      const bannerUrl = isAccept 
+        ? 'https://r2.fivemanage.com/fIzwGUYZR5rnjUFPnGj3B/whitelist_accept.png' 
+        : 'https://r2.fivemanage.com/fIzwGUYZR5rnjUFPnGj3B/whitelist_rejected.png';
 
-      if (response.ok) {
-        console.log(`Direct Discord message sent successfully to channel: ${channelId}`);
-        return true;
-      } else {
-        const errText = await response.text().catch(() => '');
-        console.error(`Direct Discord channel message failed with status ${response.status}: ${errText}. Falling back to custom webhook.`);
+      const embed: any = {
+        title: `Application Response - ${formType.toUpperCase()}`,
+        color: color,
+        fields: [
+          {
+            name: "Applicant Name",
+            value: applicantName || 'Unknown',
+            inline: true
+          },
+          {
+            name: "Discord ID",
+            value: applicantId ? `<@${applicantId}> (${applicantId})` : 'Unknown',
+            inline: true
+          },
+          {
+            name: "Status",
+            value: `**${statusText}**`,
+            inline: true
+          },
+          {
+            name: "Details",
+            value: reason || (isAccept ? 'Your application has been accepted! Please check your roles and channels.' : 'Your application was not approved at this time.'),
+            inline: false
+          }
+        ],
+        timestamp: new Date().toISOString(),
+        footer: {
+          text: `Processed By: ${adminName || 'Automated System'} • India Town Roleplay`
+        }
+      };
+
+      // Add the status banner image for all forms
+      embed.image = {
+        url: bannerUrl
+      };
+
+      try {
+        console.log(`Attempting to send direct Discord channel message to: ${channelId} for form: ${formType}`);
+        const response = await fetch(`https://discord.com/api/v10/channels/${channelId}/messages`, {
+          method: 'POST',
+          headers: {
+            Authorization: `Bot ${botToken}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ content: applicantId ? `<@${applicantId}>` : '', embeds: [embed] })
+        });
+
+        if (response.ok) {
+          console.log(`Direct Discord message sent successfully to channel: ${channelId} for form: ${formType}`);
+          return true;
+        } else {
+          const errText = await response.text().catch(() => '');
+          console.error(`Direct Discord channel message failed with status ${response.status}: ${errText}. Falling back to custom webhook.`);
+        }
+      } catch (err) {
+        console.error('Error sending direct Discord channel message, falling back to custom webhook:', err);
       }
-    } catch (err) {
-      console.error('Error sending direct Discord channel message, falling back to custom webhook:', err);
     }
   }
 

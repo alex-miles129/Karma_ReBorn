@@ -120,7 +120,7 @@ export function HeroSection() {
                     setModalType("allowlist");
                     setIsModalOpen(true);
                   } else if (isAllowlisted === true) {
-                    window.location.href = "fivem://connect/ma4erd";
+                    window.location.href = "fivem://connect/y9v6dak";
                   }
                 }}
                 className="relative flex items-center justify-center bg-[#11141e] text-white px-8 py-3.5 rounded-xl font-bold tracking-wider transition-transform hover:scale-105 hover:shadow-[0_0_15px_rgba(220,38,38,0.5)]"

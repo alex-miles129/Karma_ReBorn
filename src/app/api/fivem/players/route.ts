@@ -28,7 +28,7 @@ export async function GET() {
     const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 seconds timeout
 
     console.log('Fetching live server details from FiveM API...');
-    const res = await fetch('https://frontend.cfx-services.net/api/servers/single/ma4erd', {
+    const res = await fetch('https://frontend.cfx-services.net/api/servers/single/y9v6dak', {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Accept': 'application/json'

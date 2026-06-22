@@ -151,3 +151,17 @@
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
+@keyframes fast-tick {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+.animate-fast-tick {
+  animation: fast-tick 0.25s ease-in-out infinite;
+}
+

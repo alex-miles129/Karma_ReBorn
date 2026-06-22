@@ -49,7 +49,7 @@ export function WhitelistApplicationForm({ disabled = false, cooldownRemaining =
   const [terminated, setTerminated] = useState(false);
   const [cooldown, setCooldown] = useState(cooldownRemaining);
   const [errorMessage, setErrorMessage] = useState('');
-  const [questionTimeLeft, setQuestionTimeLeft] = useState(15);
+  const [questionTimeLeft, setQuestionTimeLeft] = useState(30);
 
   const selectedOptionRef = useRef<string | null>(null);
   const answersRef = useRef<Record<number, string>>({});
@@ -178,7 +178,7 @@ export function WhitelistApplicationForm({ disabled = false, cooldownRemaining =
       });
       const data = await response.json();
       if (data.success) {
-        setCooldown(data.cooldownRemaining || 6 * 60 * 60 * 1000);
+        setCooldown(data.cooldownRemaining || 1.5 * 60 * 60 * 1000);
       }
     } catch (err) {
       console.error("Error submitting quiz termination:", err);
@@ -240,7 +240,7 @@ export function WhitelistApplicationForm({ disabled = false, cooldownRemaining =
   useEffect(() => {
     if (quizState !== 'quiz') return;
 
-    setQuestionTimeLeft(15);
+    setQuestionTimeLeft(30);
 
     const timer = setInterval(() => {
       setQuestionTimeLeft(prev => {
@@ -248,7 +248,7 @@ export function WhitelistApplicationForm({ disabled = false, cooldownRemaining =
           clearInterval(timer);
           // Advance automatically on timeout
           handleNext(true);
-          return 15;
+          return 30;
         }
         return prev - 1;
       });
@@ -320,7 +320,7 @@ export function WhitelistApplicationForm({ disabled = false, cooldownRemaining =
             duration: 8000
           });
         } else {
-          setCooldown(data.cooldownRemaining || 6 * 60 * 60 * 1000);
+          setCooldown(data.cooldownRemaining || 1.5 * 60 * 60 * 1000);
           setQuizState('failure');
           toast({
             title: "Test Failed",
@@ -399,6 +399,14 @@ export function WhitelistApplicationForm({ disabled = false, cooldownRemaining =
               </DialogDescription>
             </DialogHeader>
 
+            <div className="bg-amber-950/20 border border-amber-900/35 p-4 rounded-lg text-sm text-amber-300 flex items-start gap-3 shadow-[0_0_15px_rgba(245,158,11,0.05)]">
+              <AlertTriangle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+              <div>
+                <strong className="text-amber-100 uppercase tracking-wider block mb-1 text-xs">Quiz Requirement Warning:</strong>
+                There are a total of <span className="text-white font-bold underline">10 questions</span>. You have exactly <span className="text-white font-bold underline">30 seconds per question</span>. You need at least <span className="text-white font-bold underline">7 correct answers</span> to pass the quiz.
+              </div>
+            </div>
+
             <div className="space-y-4 bg-zinc-900/40 border border-zinc-800/60 p-5 rounded-lg text-sm text-zinc-300">
               <h3 className="font-semibold text-zinc-100 text-base mb-2 flex items-center gap-2">
                 Rules & Information:
@@ -406,7 +414,7 @@ export function WhitelistApplicationForm({ disabled = false, cooldownRemaining =
               <ul className="space-y-3 list-none pl-0">
                 <li className="flex items-start gap-3">
                   <span className="text-purple-400 mt-0.5">•</span>
-                  <span>You will be given <strong>10 questions selected at random</strong> from our whitelist question pool.</span>
+                  <span>You will be given <strong>10 questions selected at random</strong> from our whitelist question pool. Each question has a <strong>30-second time limit</strong>.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-purple-400 mt-0.5">•</span>
@@ -424,7 +432,7 @@ export function WhitelistApplicationForm({ disabled = false, cooldownRemaining =
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-purple-400 mt-0.5">•</span>
-                  <span>If you fail or trigger the anti-cheat, you must wait <strong>6 hours</strong> before you can attempt the test again.</span>
+                  <span>If you fail or trigger the anti-cheat, you must wait <strong>1.5 hours</strong> before you can attempt the test again.</span>
                 </li>
               </ul>
             </div>
@@ -469,10 +477,12 @@ export function WhitelistApplicationForm({ disabled = false, cooldownRemaining =
                   <div className="flex items-center gap-3">
                     <h3 className="text-sm text-zinc-400">Question {currentQuestionIndex + 1} of 10</h3>
                     <span className={cn(
-                      "text-xs font-bold px-2 py-0.5 rounded-full flex items-center gap-1",
+                      "text-xs font-bold px-2 py-0.5 rounded-full flex items-center gap-1 transition-all duration-300",
                       questionTimeLeft <= 5 
-                        ? "bg-red-950/80 text-red-400 border border-red-800/50 animate-pulse" 
-                        : "bg-zinc-900 text-zinc-300 border border-zinc-800"
+                        ? "bg-red-600 text-white border border-red-500 animate-fast-tick shadow-[0_0_10px_rgba(220,38,38,0.5)]" 
+                        : questionTimeLeft <= 10
+                          ? "bg-red-600 text-white border border-red-500"
+                          : "bg-zinc-900 text-zinc-300 border border-zinc-800"
                     )}>
                       ⏱️ {questionTimeLeft}s
                     </span>

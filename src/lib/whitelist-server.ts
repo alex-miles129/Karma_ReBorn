@@ -36,7 +36,7 @@ export async function getWhitelistCooldown(discordId: string): Promise<number> {
     if (status === 'failed') {
       const attemptTime = new Date(timestamp).getTime();
       const now = Date.now();
-      const cooldownMs = 6 * 60 * 60 * 1000; // 6 hours
+      const cooldownMs = 1.5 * 60 * 60 * 1000; // 1.5 hours
       const elapsed = now - attemptTime;
       if (elapsed < cooldownMs) {
         return cooldownMs - elapsed; // returns remaining milliseconds

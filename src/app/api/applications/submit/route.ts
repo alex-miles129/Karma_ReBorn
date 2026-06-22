@@ -188,7 +188,7 @@ export async function POST(req: Request) {
       score,
       terminated,
       roleAssigned,
-      cooldownRemaining: passed ? 0 : 6 * 60 * 60 * 1000
+      cooldownRemaining: passed ? 0 : 1.5 * 60 * 60 * 1000
     });
   } catch (error) {
     console.error('Error handling application submission:', error);

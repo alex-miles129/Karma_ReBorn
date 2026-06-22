@@ -45,8 +45,7 @@ export function SiteHeader() {
           {session?.user ? (
             <>
               <Link
-                href="https://crimetownrp.tebex.io/"
-                target="_blank"
+                href="/store"
                 className="text-foreground/60 hover:text-foreground transition-colors"
               >
                 Store
@@ -96,8 +95,7 @@ export function SiteHeader() {
                 {session?.user ? (
                   <>
                     <Link
-                      href="https://crimetownrp.tebex.io/"
-                      target="_blank"
+                      href="/store"
                       className="text-foreground/70 hover:text-foreground transition-colors"
                     >
                       Store

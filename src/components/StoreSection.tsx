@@ -165,8 +165,7 @@ export function StoreSection() {
                 </div>
 
                 <Link
-                  href="https://crimetownrp.tebex.io/"
-                  target="_blank"
+                  href="/store"
                   className={`w-full py-3.5 mt-auto border border-gray-700 rounded text-xs font-bold tracking-[0.2em] uppercase text-center transition-all duration-300 hover:border-gray-500 hover:bg-white/5 ${tier.color.replace('text-', 'hover:text-')}`}
                 >
                   SUBSCRIBE

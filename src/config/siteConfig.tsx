@@ -8,7 +8,7 @@ export const navItems: NavItem[] = [
   { label: 'About', href: '/#team', icon: Info },
   { label: 'Rules', href: '/rules', icon: ListOrdered },
   { label: 'Contact', href: '/#contact', icon: Mail },
-  { label: 'Store', href: 'https://crimetownrp.tebex.io/', icon: Store },
+  { label: 'Store', href: '/store', icon: Store },
 ];
 
 export const teamMembers: TeamMember[] = [
@@ -41,7 +41,7 @@ export const teamMembers: TeamMember[] = [
 
 export const siteName = "India Town Roleplay";
 
-export const discordInviteLink = "https://discord.gg/ydtT9UzQUz"; // General Discord invite
+export const discordInviteLink = "https://discord.gg/itrp"; // General Discord invite
 export const fivemJoinLink = "fivem://connect/pmgjr8"; // Replace with actual FiveM server IP or link
 
 // Footer specific links
@@ -53,7 +53,7 @@ export const footerNavigationLinks: NavItem[] = [
 
 export const footerResourceLinks: NavItem[] = [
   { label: 'Apply Now', href: '/profile', icon: ExternalLink },
-  { label: 'Store', href: 'https://crimetownrp.tebex.io/', icon: ExternalLink },
+  { label: 'Store', href: '/store', icon: ExternalLink },
   { label: 'Discord', href: discordInviteLink, icon: ExternalLink },
 ];
 

@@ -1,387 +1,387 @@
 [
   {
     "id": 1,
-    "question": "A friend tells you something about another player's plans over Discord — information your character has no in-character way of knowing. What do you do?",
+    "question": "You are robbing a store with two partners. Your third partner, who was never present at the scene and is 500 meters away, radios in saying cops are incoming. You relay this over voice IC. Twenty seconds later police arrive and your partner opens fire on them from range. Under standard initiation rules, was your partner's engagement valid?",
     "options": [
-      "Use it immediately to confront their character",
-      "Ignore it completely and only act on information your character has learned in-game",
-      "Tell your character's friends about it in IC chat",
-      "Wait a few minutes, then use it so it looks less obvious"
+      "Yes — radio communication counts as valid IC relay, so the partner had enough information to engage",
+      "No — your partner was never physically present at the scene and did not witness the initiation; relayed radio information does not substitute for direct involvement and most servers require the player to have been present or have their own valid initiation before engaging",
+      "Yes — as long as at least one gang member at the scene confirms the initiation verbally, all affiliates are automatically cleared to engage",
+      "No — the partner needed to have fired a warning shot first before engaging law enforcement at range"
     ],
     "correctIndex": 1
   },
   {
     "id": 2,
-    "question": "While driving, you accidentally clip a parked car. No one saw it happen. What's the appropriate response?",
+    "question": "You have been zip-tied, blindfolded, and taken to an unknown location by a rival gang. They step outside and leave you alone for several minutes. You attempt a /me escape. The rival players are temporarily AFK and do not respond to your /do asking whether the ties are loose. What is the correct action?",
     "options": [
-      "Drive away since no one saw",
-      "Type \"oops lol\" in OOC chat and continue",
-      "Blame it on lag in IC chat",
-      "Stop, assess the damage in character, and react as your character realistically would (leave a note, call it in, etc.)"
+      "Wait a maximum of two minutes for a /do response, then proceed with the escape since their AFK status forfeits their right to contest it",
+      "Escape freely through game movement since no one is monitoring the scene",
+      "Wait a reasonable amount of time for a response — if none comes, contact staff before acting unilaterally; escaping without resolving the /do fairly is still powergaming even if uncontested",
+      "Use the opportunity to escape and log off immediately so the location cannot be traced IC"
     ],
-    "correctIndex": 3
+    "correctIndex": 2
   },
   {
     "id": 3,
-    "question": "You're in a serious scene and another player keeps breaking immersion by talking about real-life topics over voice chat.",
+    "question": "You witness your gang member get shot dead by a rival in front of you. Thirty seconds later, a completely different rival player who belongs to the same gang but was not present at the shooting drives past. Can you open fire on them?",
     "options": [
-      "Use /ooc or your server's OOC method to politely ask them to stay in character",
-      "Join in since it's funny",
-      "Ignore it and hope it stops",
-      "Kill their character in IC to \"punish\" them"
+      "Yes — gang affiliation means every member of the rival gang is a valid target for the duration of the conflict",
+      "Yes — but only if that specific player has previously been involved in hostilities with your gang this session",
+      "No — you can only engage players who were directly involved in or physically present at the specific initiation event; an uninvolved member driving past is not a valid target without their own separate initiation",
+      "No — a cooling-off period of at least 10 minutes is required before any counter-engagement"
     ],
-    "correctIndex": 0
+    "correctIndex": 2
   },
   {
     "id": 4,
-    "question": "You witness a crime but need to log off for the night. What's the right way to handle it?",
+    "question": "You are playing a detective and have gathered circumstantial IC evidence pointing to a suspect. Your friend, who plays a forensic tech on the same server, mentions in a private Discord voice call outside the game that they overheard the suspect confess to someone in a different scene earlier. You did not witness this. Can you use this to obtain a search warrant IC?",
     "options": [
-      "Log off immediately to avoid being questioned",
-      "Tell police OOC what happened, then log off",
-      "Find a safe, in-character reason to leave the scene before logging off",
-      "Stand there AFK until someone notices"
+      "Yes — your friend is a server character too so the information exists within the server's IC world",
+      "Yes — but only if your friend files an official IC statement through the server's police documentation system",
+      "No — information obtained through any out-of-game channel, including a private Discord call between two players, is OOC regardless of the source; using it IC is metagaming even if both characters exist on the same server",
+      "No — but only because you cannot verify the confession took place without video evidence"
     ],
     "correctIndex": 2
   },
   {
     "id": 5,
-    "question": "Another player breaks the fourth wall mid-scene, mentioning \"the server\" or game mechanics.",
+    "question": "You are being held at gunpoint. You have your hands raised. Your assailant turns away for a split second to talk to their partner. Your character is described in your approved backstory as a trained ex-military combatant. What does Fear RP require here?",
     "options": [
-      "Respond in character as if they said something normal",
-      "Step out via OOC briefly to flag it, then return to the scene properly",
-      "Report them immediately without saying anything",
-      "Mimic them and also break character"
-    ],
-    "correctIndex": 1
-  },
-  {
-    "id": 6,
-    "question": "Three armed people point guns at your character and demand you put your hands up. Your character only has a knife.",
-    "options": [
-      "Pull out the knife and fight back",
-      "Run away in a straight line while they shoot",
-      "Type /ooc \"this isn't fair\" and leave the scene",
-      "Comply and roleplay realistic fear — fighting three armed people with a knife isn't realistic"
-    ],
-    "correctIndex": 3
-  },
-  {
-    "id": 7,
-    "question": "You see an unfamiliar player standing near a bank and assume they're about to rob it.",
-    "options": [
-      "Approach and roleplay observing or questioning them before taking any action",
-      "Shoot them immediately to stop the robbery",
-      "Call the police OOC immediately",
-      "Run them over with your car as a precaution"
-    ],
-    "correctIndex": 0
-  },
-  {
-    "id": 8,
-    "question": "Your character dies in a shootout. Under the New Life Rule (NLR), what should you do?",
-    "options": [
-      "Remember everything and seek revenge on whoever killed you",
-      "Tell the people who killed you \"good game\" and carry on as normal",
-      "Forget the specifics of the scene that led to your death and don't return to that conflict",
-      "Wait five minutes, then return to the same fight"
+      "Your backstory creates a legitimate exception — a trained combatant would instinctively exploit that window to disarm or flee",
+      "Fear RP is suspended the moment the gunman breaks eye contact, giving you a realistic window to act",
+      "Fear RP persists — the tactical situation has not changed enough to guarantee safety; a gun can be raised faster than you can act and the risk to your character's life remains unacceptably high regardless of training",
+      "You may attempt a disarm only if you type a /me describing the attempt before acting through game movement"
     ],
     "correctIndex": 2
   },
   {
-    "id": 9,
-    "question": "You're losing a gunfight and about to be caught. What's the appropriate response?",
+    "id": 6,
+    "question": "An hour into your session your character was badly beaten and robbed in an alley. You were not killed. Later in the same session you are killed in a completely unrelated car accident caused by a stranger. Under NLR, what must you forget?",
     "options": [
-      "Disconnect from the server to dodge the consequences",
-      "See the roleplay through to its conclusion (surrender, arrest, etc.), even if the outcome is bad for your character",
-      "Type \"I have to go\" in OOC and log off mid-scene",
-      "Claim your character suddenly had a heart attack to escape"
+      "Everything that happened during the entire session, since your new life effectively resets your character's recent experiences",
+      "Only the car accident itself and the identity of the driver — the beating and robbery from earlier are unrelated and are fully retained",
+      "The beating and robbery since they are recent traumatic memories that NLR is designed to erase",
+      "Everything that occurred within 30 minutes before the car accident, which may or may not include the robbery depending on the exact timeline"
     ],
     "correctIndex": 1
   },
   {
-    "id": 10,
-    "question": "Two robbers properly initiate on a store — clear demands, a real threat, and time given to comply — before anything escalates. How should this be judged?",
+    "id": 7,
+    "question": "You are a responding officer. A suspect is barricaded inside a building and has taken no hostage. They are alone, armed, and refusing to come out. Negotiations have fully broken down after 25 minutes with no movement. Your sergeant orders a forced entry immediately. What is the correct RP approach?",
     "options": [
-      "This is RDM since they didn't ask permission first",
-      "This is FailRP because robbery isn't allowed",
-      "This is metagaming since they used OOC information",
-      "This is acceptable RP, since there was a proper initiation and a real chance to comply"
+      "Execute the forced entry immediately — the sergeant's IC rank overrides all other considerations",
+      "This is valid as long as you use a /me before breaching",
+      "Refuse the order OOC since forced entry without hostages present is always FailRP",
+      "Before breaching, ensure your team has used all realistic escalation steps; then document the decision IC through radio or reports — rushing a breach without proper RP buildup turns a good standoff scene into FailRP even if a senior officer gave the order"
     ],
     "correctIndex": 3
   },
   {
-    "id": 11,
-    "question": "A player drives into a crowd of pedestrians with no RP reason or buildup, killing several instantly.",
+    "id": 8,
+    "question": "During a hostage negotiation, the robbers set a 3-minute countdown and demand a car and free passage. The negotiator stalls with lengthy dialogue and the 3 minutes expire. The robbers immediately execute a hostage. Is the robbers' action valid?",
     "options": [
-      "This is VDM (Vehicle Deathmatch) and a rule violation",
-      "This is fine — it's an open-world game",
-      "This is fine as long as they apologize in OOC afterward",
-      "This is acceptable as a \"prank\" RP"
+      "No — robbers can never execute hostages under any circumstances on serious RP servers",
+      "Yes — a clearly communicated countdown with defined consequences that expired due to deliberate stalling is a valid IC escalation and the execution is RP-valid",
+      "No — only one warning execution is permitted and only after a second countdown is issued",
+      "Yes — but only if the hostage player gave explicit OOC consent before the scene began"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": 9,
+    "question": "You and a friend are playing on the same server. You are not in the same IC faction. While chatting in a private Discord server you share together, your friend casually mentions their character's illegal warehouse location. Later that day your character 'stumbles across' the warehouse and calls police. Is this a rule violation?",
+    "options": [
+      "No — you did not directly use the information; stumbling across a location naturally is a coincidence",
+      "No — private Discord servers between real-life friends are considered personal space and are not monitored by server rules",
+      "Yes — using any IC-relevant information learned through OOC channels to influence your in-character actions is metagaming, regardless of how naturally you framed the discovery in-game",
+      "It depends — if you told staff about the OOC conversation first, the coincidence becomes defensible"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "id": 10,
+    "question": "A player commits a crime and immediately enters a green zone (hospital lobby) before police arrive. Officers surround the building. Can police arrest them inside?",
+    "options": [
+      "Yes — actively using a green zone as an escape tool to evade consequences voids its protection; exploiting safe zones to avoid immediate arrest is FailRP and officers can pursue inside",
+      "No — green zones are absolute and provide unconditional immunity the moment any player enters",
+      "Yes — police always retain full jurisdiction inside hospitals under RP law",
+      "No — unless the crime was committed inside the green zone itself, police must wait outside indefinitely"
     ],
     "correctIndex": 0
   },
   {
-    "id": 12,
-    "question": "After winning a gunfight, you instantly loot the bodies via menu with zero dialogue or roleplay.",
+    "id": 11,
+    "question": "You are in the middle of a gunfight and get downed. EMS revives you within the scene. Under NLR, what applies?",
     "options": [
-      "This is fine — looting is part of the game",
-      "This is fine since they're unconscious",
-      "This is Power Gaming — the search should be roleplayed, not instant",
-      "This is normal looting RP"
+      "Full NLR — being downed and revived counts as a death, so you must forget the scene entirely",
+      "NLR does not apply at all — being revived by EMS means your character never died and retains all memories from the scene",
+      "Partial NLR — you retain memories up to when you were downed but must forget the identities of who shot you",
+      "Full NLR — being revived does not matter; the moment your character hit the ground unconscious the NLR clock started"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": 12,
+    "question": "You are streaming with a 10-second delay. A viewer spoils your stream chat with enemy positions. You ignore the chat but your co-player, who is also at the scene in real life, watches your stream on a second monitor and adjusts their character's position based on what they saw. What rule did your co-player violate?",
+    "options": [
+      "None — they were reacting to visual information available on a public platform, which is always considered fair game",
+      "FailRP — co-players are not permitted to watch each other's streams during an active session",
+      "Metagaming — using a stream, even a publicly available one, to gain positional or tactical information that their character had no IC means of knowing is metagaming regardless of the delay",
+      "VDM — repositioning based on stream data puts other players at an unfair combat disadvantage equivalent to using a vehicle as a weapon"
     ],
     "correctIndex": 2
   },
   {
     "id": 13,
-    "question": "Your character is shot and badly hurt. EMS arrives to treat you in a reasonable amount of time.",
+    "question": "You robbed someone 20 minutes ago with a proper initiation. That same player spots you across the city and opens fire without any new initiation. Is their engagement valid?",
     "options": [
-      "Self-revive instantly through a menu to skip the wait",
-      "Stay in character, roleplay the injury, and wait for EMS treatment",
-      "Walk it off and keep running",
-      "Log off since you don't want to wait"
+      "Yes — the victim of a robbery always has an indefinite right to seek retribution on the robber for the remainder of the session",
+      "It depends on your server's specific combat timer — most servers define a window (commonly 30 minutes) within which counter-engagement remains valid without a new initiation; 20 minutes would typically still be within that window on most servers",
+      "No — once a robbery scene ends and both players leave the location the initiation is completely void and a new one is required for any future engagement",
+      "Yes — being the victim of a crime permanently flags the criminal as a valid target for the victim for the rest of the session"
     ],
     "correctIndex": 1
   },
   {
     "id": 14,
-    "question": "You're being restrained/choked by another player while a third player interrogates you.",
+    "question": "Your character is a lawyer. A player who has just been arrested asks you OOC to 'get them out of jail quickly' because they are bored of waiting. What is the appropriate response?",
     "options": [
-      "Spam movement keys to break free",
-      "Log off to avoid the situation",
-      "Ask OOC for them to let you go because you don't like it",
-      "Roleplay the restrained state and respond through dialogue rather than exploiting mechanics to escape"
-    ],
-    "correctIndex": 3
-  },
-  {
-    "id": 15,
-    "question": "A heavily armed criminal points a gun at an unarmed civilian with zero RP buildup, just because they wanted \"action.\"",
-    "options": [
-      "This is poor RP/a rule violation — conflict needs a real in-character reason and buildup",
-      "This is good RP — it creates excitement",
-      "This is fine since the civilian can just walk away",
-      "This is acceptable since responding is optional"
+      "Work IC through whatever legal or RP channels the server provides — lawyer RP must follow IC processes regardless of OOC impatience; you cannot use your character's status to shortcut server legal systems for someone's OOC comfort",
+      "File an emergency bail motion through the server's legal system as quickly as possible since player enjoyment is the priority",
+      "Contact staff OOC to have the sentence reduced since prolonged jail time is poor server design",
+      "Accept the case and use OOC influence with the arresting officer's real-life player to negotiate a quicker resolution"
     ],
     "correctIndex": 0
   },
   {
-    "id": 16,
-    "question": "As an officer, you pull someone over for a broken taillight, and they comply fully and politely.",
+    "id": 15,
+    "question": "You and three allies corner an unarmed player. One of your allies issues demands. The unarmed player immediately complies. Your second ally without speaking types /me strikes them across the face hard. The unarmed player had no chance to react. What rule was violated?",
     "options": [
-      "Arrest them immediately for resisting",
-      "Search the entire vehicle without cause",
-      "Run a realistic stop, issue a warning or citation fitting the offense, stay professional",
-      "Ask OOC if they have anything illegal"
+      "Fear RP — the unarmed player should have been allowed to run before any physical contact",
+      "RDM — striking a compliant player with no warning is equivalent to random deathmatch",
+      "Powergaming — forcing an immediate physical action on a compliant player who has no ability to react, contest, or respond to the /me is powergaming regardless of the situation they are in",
+      "No rule was violated — the player already complied with demands so their character's safety was their own responsibility at that point"
     ],
     "correctIndex": 2
   },
   {
-    "id": 17,
-    "question": "A fleeing suspect is eventually cornered with no escape route after a long chase.",
+    "id": 16,
+    "question": "You are police and suspect a vehicle contains drugs. You have no probable cause whatsoever beyond a general suspicion. You ask the driver for consent to search. They say no. What is the correct action?",
     "options": [
-      "Keep running into the same dead end to avoid resolving the RP",
-      "Make a realistic in-character decision — surrender, negotiate, or a last resort, based on the character",
-      "Disconnect immediately",
-      "Claim diplomatic immunity OOC"
+      "Search anyway — the refusal itself raises suspicion and justifies a probable cause search",
+      "Accept the refusal — without consent or independently established probable cause you have no legal IC basis to search the vehicle; proceeding anyway is FailRP and abuse of your faction's powers",
+      "Detain the driver for 10 minutes while you try to establish probable cause through observation",
+      "Call for a K9 unit automatically — a K9 alert supersedes the need for consent or probable cause on all RP servers"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": 17,
+    "question": "An active shootout between two gangs spills into a public street with civilians present. You are an uninvolved civilian bystander caught in the crossfire. A gang member points their gun at you and tells you to leave the area. What does Fear RP require?",
+    "options": [
+      "Nothing — civilians are immune from Fear RP obligations since they are not willing participants in the conflict",
+      "Comply and leave — a gun is being pointed at you with a clear verbal demand; Fear RP applies to all players in any situation where a lethal threat is credibly presented regardless of whether you chose to be in the scene",
+      "You may stand your ground — civilians have the IC right to remain in public spaces and the gang member has no authority over civilian movement",
+      "Call police IC immediately — your duty as a civilian to report crime overrides Fear RP compliance"
     ],
     "correctIndex": 1
   },
   {
     "id": 18,
-    "question": "You've been arrested and are being transported to jail.",
+    "question": "You are playing a criminal and get arrested. While in custody you tell the arresting officer OOC 'this arrest was invalid because you didn't have probable cause.' The officer disagrees. What is the correct process?",
     "options": [
-      "Use a game glitch to clip through the vehicle and escape",
-      "Log out the moment you're cuffed",
-      "Demand the officer let you go because \"it's not fair\"",
-      "Roleplay the arrest and transport, including any IC dialogue, without exploiting bugs"
-    ],
-    "correctIndex": 3
-  },
-  {
-    "id": 19,
-    "question": "You see a robbery from a distance but weren't involved or threatened, and couldn't clearly identify the suspect.",
-    "options": [
-      "Only share what your character could realistically have observed and learned in-character",
-      "Report the suspect's full name and details to police OOC",
-      "Use admin chat to report it even though no rule was broken",
-      "Tell police what you saw on the player's stream"
-    ],
-    "correctIndex": 0
-  },
-  {
-    "id": 20,
-    "question": "An officer holds a low-risk single suspect for 10+ minutes waiting on backup, stalling the scene for everyone.",
-    "options": [
-      "This is correct procedure and should always be followed regardless of context",
-      "The suspect should just walk away",
-      "This is poor pacing — officers should balance realism with keeping RP moving for everyone involved",
-      "The suspect should log off and rejoin later"
+      "Argue the point in OOC until the officer acknowledges the error and releases you",
+      "Refuse to cooperate with the booking process until the matter is resolved OOC",
+      "Comply fully with the IC arrest process — contest the legality through IC channels such as hiring a lawyer or filing a complaint; save rule disputes for a staff ticket after the scene concludes",
+      "Contact staff mid-scene to pause the RP and adjudicate the probable cause question immediately"
     ],
     "correctIndex": 2
   },
   {
-    "id": 21,
-    "question": "Your character is a drug dealer wanting to sell to another player.",
+    "id": 19,
+    "question": "Your character has been held in a roleplay jail for 45 minutes. The server's maximum IC jail time rule states 60 minutes. There are no officers actively engaging with you. You are just sitting in a cell doing nothing. What is appropriate?",
     "options": [
-      "Announce in OOC chat what you're selling and the price",
-      "Roleplay the transaction discreetly in character, at an appropriate location",
-      "Sell openly in the middle of the police station",
-      "Advertise the sale over a public radio frequency"
+      "Log off after 45 minutes since no active RP means no obligation to remain",
+      "Reach out to available staff or the on-duty officers through IC methods to request processing — if the server has active officers and your time has not expired, leaving early or logging off is not appropriate",
+      "Break out using any available game mechanics since the lack of engagement voids the imprisonment RP",
+      "Message the arresting officer OOC to remind them you are still in jail and demand immediate attention"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": 20,
+    "question": "A fellow officer shoots an unarmed, fully compliant suspect during a standard traffic stop with no provocation. You witnessed the entire event. What do you do IC and OOC?",
+    "options": [
+      "Cover for your colleague IC to protect the department and report them OOC to staff after shift",
+      "Arrest them IC for the shooting and file an OOC report to staff — witnessing a rules violation does not grant you immunity for failing to act, and covering for a powergame or RDM action makes you complicit in the violation",
+      "File only an IC internal affairs report and take no OOC action since it may have been a valid RP decision",
+      "Do nothing IC since interfering with another officer's scene is considered FailRP; only report them OOC"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": 21,
+    "question": "You are playing a gang leader and a new member of your gang, who is still on probation within the faction, goes rogue and murders a civilian without any order or authorization from you. The victim's associates retaliate against your entire gang. Is your gang obligated to defend themselves?",
+    "options": [
+      "Yes — gang affiliation means all retaliatory attacks on any member are automatically valid defensive engagements for the entire gang",
+      "It is complicated — your gang can defend themselves if directly threatened, but most servers do not allow you to then escalate into full gang war retaliation if the original killing that caused the conflict was unauthorized, unsanctioned, and violated server rules",
+      "No — your gang is only liable for attacks your leadership personally authorized; all unauthorized actions by members are treated as solo incidents with no gang implications",
+      "Yes — the retaliation creates a fresh initiation that is entirely separate from how the conflict started"
     ],
     "correctIndex": 1
   },
   {
     "id": 22,
-    "question": "A suspect has clearly stated several times, in character, that they don't know anything. The officer repeats the same threat for 20 minutes with no new approach.",
+    "question": "While roleplaying an undercover cop purchasing drugs from a dealer, you successfully complete the buy and now have IC evidence. Your sergeant then orders you to arrest the dealer on the spot, blowing your cover operation. You believe the operation has bigger targets and ending it now is poor decision-making. What do you do?",
     "options": [
-      "This is fine — repetition builds tension",
-      "The suspect should log off since it's taking too long",
-      "The officer should call real-life police",
-      "This is poor RP — interrogations should progress rather than loop without development"
+      "Refuse the order — realistic undercover operations justify disobeying a superior when the operation's integrity is at stake",
+      "Comply IC with the order regardless of your personal opinion — you can raise your disagreement through IC chain of command or OOC discussion after the scene but not by unilaterally ignoring a superior's direct IC instruction",
+      "Make the arrest but frame it as your character acting alone to protect the sergeant from accountability",
+      "Go OOC and tell the sergeant's player that their decision is bad RP before deciding whether to comply"
     ],
-    "correctIndex": 3
+    "correctIndex": 1
   },
   {
     "id": 23,
-    "question": "You want to start an in-character business.",
+    "question": "You are playing an EMS and arrive at a gang shootout. While treating a wounded gang member, you notice drugs and a weapon clearly visible beside them on the ground. Are you required to report this to police IC?",
     "options": [
-      "Earn money and resources through legitimate in-character work and the server's economy",
-      "Ask an admin to spawn you free starting capital",
-      "Use a glitch to duplicate items for quick profit",
-      "Buy in-game currency from a third-party website"
+      "Yes — EMS are auxiliary law enforcement on all serious RP servers and must report all observed contraband",
+      "Yes — but only the weapon, not the drugs, since drugs may be prescribed medications",
+      "No — EMS operate as a neutral medical service; sharing scene intelligence like contraband locations with police undermines your neutrality and is generally considered a violation of your faction's RP guidelines unless your server explicitly states otherwise",
+      "No — only if the gang member is still conscious and present; unconscious patients have no IC right to have their property protected"
     ],
-    "correctIndex": 0
+    "correctIndex": 2
   },
   {
     "id": 24,
-    "question": "You find a duplication glitch that creates unlimited cash.",
+    "question": "Two players agree OOC before a scene to do a violent torture RP. Midway through the scene, a third uninvolved player walks in and witnesses it. What is the correct approach?",
     "options": [
-      "Use it quietly and tell no one",
-      "Use it once and stop",
-      "Report it to server staff and don't exploit it",
-      "Share it with close friends only"
+      "Continue the scene — prior OOC consent between the two players makes the content fully permissible regardless of who is present",
+      "Pause the scene immediately and ask the third player OOC for consent before continuing any graphic content in their presence — consent only covers the players who agreed to it; witnessing graphic RP without consent is a violation even if the original participants agreed",
+      "Tell the third player IC to leave and resume once they are gone",
+      "The scene is automatically void the moment a third party enters — restart from the beginning with all three players present"
     ],
-    "correctIndex": 2
+    "correctIndex": 1
   },
   {
     "id": 25,
-    "question": "As an EMS character, a patient arrives with a roleplayed injury, and you instantly heal them via menu with no dialogue.",
+    "question": "A player has been roleplaying a severe mental breakdown all evening, has said goodbye to multiple characters, and has made comments both IC and OOC that blur the lines between fiction and genuine distress. What is the priority?",
     "options": [
-      "This is fine — efficiency matters most",
-      "This is poor RP — medical treatment should include realistic roleplay and time",
-      "This is fine since the patient didn't complain",
-      "This is fine for repeat patients only"
-    ],
-    "correctIndex": 1
-  },
-  {
-    "id": 26,
-    "question": "You're buying or renting a house in character.",
-    "options": [
-      "The transaction should be instant menu clicks, no dialogue",
-      "It should be skipped entirely since it's just a game mechanic",
-      "It should be negotiated entirely through OOC chat",
-      "The transaction should be roleplayed with dialogue, matching how a real purchase might unfold"
-    ],
-    "correctIndex": 3
-  },
-  {
-    "id": 27,
-    "question": "You're a taxi driver and a passenger gets in your car.",
-    "options": [
-      "Greet the passenger, discuss the destination, and engage appropriately during the ride",
-      "Silently drive to the destination with no interaction",
-      "Refuse all passengers to avoid RP",
-      "Drive recklessly regardless of how the passenger reacts"
-    ],
-    "correctIndex": 0
-  },
-  {
-    "id": 28,
-    "question": "You discover a bug that lets you see through walls while crouched in a certain spot.",
-    "options": [
-      "Use it to gain a combat advantage",
-      "Use it sparingly so you don't get caught",
-      "Avoid using it and report it to server staff",
-      "Teach others how to do it for fun"
+      "Stay in the RP scene — breaking character unsolicited is considered disrespectful and may ruin their immersive experience",
+      "Report them to staff for unstable RP that disrupts the community atmosphere",
+      "Immediately and compassionately break character using a safe call or OOC message to check on the real person — player wellbeing always overrides scene continuity; if there is any genuine doubt about someone's real-life state, you address the person, not the character",
+      "Continue the RP but steer your character to provide in-game support, such as calling IC emergency services"
     ],
     "correctIndex": 2
   },
   {
-    "id": 29,
-    "question": "You're streaming, and a viewer tells you where an enemy is hiding — something your character has no IC way of knowing.",
+    "id": 26,
+    "question": "Your character is the leader of a crime organization. A lower-ranked member is caught by police and under interrogation reveals your character's name and location to avoid prison time. You had no OOC conversation with that player about this happening. Is this valid RP?",
     "options": [
-      "Use the information since you can't control your chat",
-      "Ignore it and base your actions only on what your character actually perceived",
-      "Thank the viewer in-game and act on it",
-      "Tell your in-game allies what the viewer said"
+      "No — players must obtain OOC consent from other players before implicating their characters in criminal activity during interrogations",
+      "Yes — this is exactly the kind of organic, consequence-driven RP that serious servers are built for; characters making self-interested decisions under pressure is valid without any OOC agreement required",
+      "No — only staff-supervised interrogations can produce IC intelligence that impacts other players' characters",
+      "Yes — but only if the crime organization leader has been previously arrested at least once, establishing them as a known criminal on record"
     ],
     "correctIndex": 1
   },
   {
-    "id": 30,
-    "question": "You disagree with a decision a staff member makes during an active scene.",
+    "id": 27,
+    "question": "You die in a shootout. Under NLR you forget the conflict. Ten minutes later you are driving in a completely different part of the city and recognize one of the players who killed you — not because you remember the shooting, but because you have seen their distinctive custom vehicle at previous unrelated IC interactions weeks ago. Can your character acknowledge them?",
     "options": [
-      "Argue and refuse to comply in the moment, disrupting the scene",
-      "Leave the server permanently without explanation",
-      "Insult the staff member publicly in chat",
-      "Comply in the moment, then dispute it afterward through proper channels (tickets/reports)"
+      "No — NLR creates a blanket cooldown on all interaction with anyone present at your death for a set time period",
+      "No — any recognition of a player involved in your death scene within the NLR window is forbidden regardless of how the recognition occurred",
+      "Yes — NLR specifically erases memories tied to the death event; prior unrelated IC familiarity with a person or their vehicle from separate occasions is not erased by NLR and your character can acknowledge the vehicle without referencing the shooting",
+      "Yes — but only after the server's standard NLR timer has fully expired"
     ],
-    "correctIndex": 3
+    "correctIndex": 2
   },
   {
-    "id": 31,
-    "question": "You're unsure whether an action is allowed on the server.",
+    "id": 28,
+    "question": "You are a criminal and have just successfully robbed a store. Police have your description from a witness. You enter a clothing store, buy an entirely new outfit, and walk out with a different appearance. Police then stop you. Can you claim your character looks nothing like the suspect described?",
     "options": [
-      "Check the server rules or ask staff before attempting it",
-      "Just try it and see what happens",
-      "Assume it's fine since other games allow it",
-      "Do it only when no staff are online"
+      "Yes — changing clothing is a fully valid and recognized method of breaking a police description in RP; if you roleplayed the change properly the new description cannot be applied to you",
+      "Only if a /me and /do were used to confirm the outfit change was complete before police made contact with you",
+      "No — clothing changes only affect NPC witnesses; player characters retain memory of your face regardless of outfit",
+      "Only if the original witness description was filed as an official IC police report before you changed"
     ],
     "correctIndex": 0
   },
   {
-    "id": 32,
-    "question": "You accidentally overhear sensitive IC plans in the wrong Discord/radio channel.",
+    "id": 29,
+    "question": "You are mid-way through an elaborate 2-hour business deal RP scene when the other player suddenly says OOC 'I have to go, emergency IRL.' They log off immediately leaving the scene unresolved. What is appropriate?",
     "options": [
-      "Use the information since you \"didn't mean to\" hear it",
-      "Tell your faction leader what you heard",
-      "Disregard it entirely, since your character didn't learn it through legitimate IC means",
-      "Use it but pretend you found out another way"
+      "Treat the scene as concluded in your favour since they forfeited by leaving",
+      "Continue the scene using /me to simulate both sides of the conversation until a natural conclusion is reached",
+      "Accept the situation; pause or suspend the scene in whatever state it is in; reach out to the player later to continue or find a fair resolution — real life always takes priority and you cannot punish an IC outcome on someone because of a genuine emergency",
+      "Report them to staff immediately for logging off mid-scene so they receive a formal warning before you agree to reschedule"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "id": 30,
+    "question": "Your gang declares war on a rival. The server's active war rules state both sides must confirm the war declaration before hostilities begin. Your leader announces the war IC but the rival leader has not yet responded. One of your members sees a rival and opens fire 10 minutes later. Is this valid?",
+    "options": [
+      "Yes — the declaration was made publicly IC so all members of both gangs are on notice",
+      "Yes — the rival's failure to respond within 10 minutes is considered implicit acceptance",
+      "No — without mutual confirmation the war declaration is still pending; engaging before both sides confirm is a standard initiation violation since the server's specific war rules require bilateral agreement before hostilities are authorised",
+      "No — war declarations must always be submitted through a staff ticket before any IC announcement"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "id": 31,
+    "question": "An officer pulls you over and asks if you have been drinking. Your character has been roleplaying drinking at a bar for the past hour with multiple /me messages confirming alcohol consumption. You want to claim your character is sober to avoid a DUI charge. Is this permissible?",
+    "options": [
+      "Yes — unless the officer directly witnessed the drinking IC, they have no grounds to challenge your claim",
+      "Yes — your character can always invoke the right to silence and refuse to answer self-incriminating questions",
+      "No — denying an established IC state that has been documented through multiple /me messages during the current session is FailRP; your character's physical condition was set through roleplay and cannot be selectively retconned for convenience",
+      "No — but only if the bar staff player files an official witness report with police documenting the drinking"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "id": 32,
+    "question": "You are playing a character with diagnosed schizophrenia as a core personality trait. During a police interview your character begins hearing voices and reacting to them. The detective OOC messages you saying 'please stop, this RP is making me uncomfortable.' What do you do?",
+    "options": [
+      "Continue — mental illness RP is realistic and the detective's discomfort does not override approved character traits",
+      "Stop immediately and completely drop the trait for the rest of the session",
+      "Acknowledge their discomfort OOC, check whether your server has specific rules about mental health RP, and find a mutually agreeable way to continue the scene — pushing forward with content another player has explicitly flagged discomfort with, even for an approved character trait, undermines the collaborative nature of RP",
+      "Tell the detective OOC that mental illness is not offensive and continue the scene unchanged"
     ],
     "correctIndex": 2
   },
   {
     "id": 33,
-    "question": "You're writing your character backstory for the application.",
+    "question": "You complete a legal transaction and hand over a large amount of IC cash for a property. The seller takes the money but then uses a server mechanic exploit to cancel the transfer and keep both the cash and the property. You have screenshot evidence of the full transaction. What is this classified as and what do you do?",
     "options": [
-      "Copy a backstory from a popular streamer's character",
-      "Create an original backstory that fits the server's setting and rules",
-      "Leave it blank — RP will define it organically",
-      "Include real, identifiable real-life people"
+      "This is scam RP and may be valid depending on your server's scam rules — check whether your server permits financial scam RP before filing a report",
+      "This is an exploit and a possible scam RP violation combined — the use of a game mechanic to forcibly reverse a completed IC transaction falls outside normal scam RP since it uses a technical exploit; report it to staff immediately with your evidence regardless of scam RP rules",
+      "This is valid RP — all IC financial decisions carry risk and a completed deal gone wrong is an IC consequence to accept",
+      "This is only reportable if the property value exceeds the server's defined major crime threshold"
     ],
     "correctIndex": 1
   },
   {
     "id": 34,
-    "question": "Your character has a strong trait (e.g. a short temper). Staying true to it in a tense scene would lead to a worse outcome for your character.",
+    "question": "You are a police negotiator in a hostage situation. The robbers' demands are completely unreasonable and you have secretly been stalling for 40 minutes with no intention of meeting any demand. The robbers execute a hostage and begin threatening a second. Your supervisor orders you to promise the getaway car to save the remaining hostages even though command has no intention of honouring that promise. What does this create?",
     "options": [
-      "Abandon the trait to avoid bad consequences",
-      "Pause the scene to ask other players what to do",
-      "Switch to a different character mid-scene",
-      "Stay true to your character's established personality, even when it leads to an unfavorable outcome"
+      "A legitimate tactical deception — law enforcement deception during hostage negotiations is realistic and always permitted in any RP context",
+      "A valid tactic but one with IC consequences — promising a getaway car you never intend to deliver creates an IC breach of negotiated terms; if the robbers later discover the deception, retaliation against the negotiator character becomes a legitimate IC consequence",
+      "An automatic server rule violation — promising things you do not intend to deliver is classified as scam RP on all serious servers",
+      "No issue — negotiators have absolute immunity from IC consequences for anything said during an active hostage scene"
     ],
-    "correctIndex": 3
+    "correctIndex": 1
   },
   {
     "id": 35,
-    "question": "Staff ask you to define \"Power Gaming\" in your own words during the interview.",
+    "question": "You are new to the server. You find that by parking a specific vehicle at a precise location you can duplicate any item in your inventory. You test it once on a low-value item to confirm it works. You do not use it again. You do not report it. Three days later staff discover the exploit log and find your test. What is most likely to happen and why?",
     "options": [
-      "Forcing an action onto another player's character without giving them a realistic chance to react or resist",
-      "Playing the most powerful character available",
-      "Leveling up your character's skills quickly",
-      "Using in-game money to buy expensive items"
+      "Nothing — you only used it once on a low-value item and chose not to exploit it further, which demonstrates good faith",
+      "You will receive a minor warning for curiosity but face no real consequence since the item value was negligible",
+      "You will likely face punishment regardless — knowingly testing an exploit, even once, and failing to report it is considered intentional exploitation on most servers; the deliberate nature of the test and the decision to stay silent are both violations independent of how many times you used it",
+      "You will only face consequences if you can be proven to have shared knowledge of the exploit with another player"
     ],
-    "correctIndex": 0
+    "correctIndex": 2
   }
 ]

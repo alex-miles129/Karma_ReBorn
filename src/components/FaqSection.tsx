@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import {
   Accordion,
   AccordionContent,
@@ -30,7 +31,43 @@ const faqs = [
   }
 ];
 
+function TypewriterAnswer({ answer, isOpen }: { answer: string; isOpen: boolean }) {
+  const [displayedText, setDisplayedText] = useState("");
+
+  useEffect(() => {
+    if (!isOpen) {
+      setDisplayedText("");
+      return;
+    }
+
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      if (currentIndex <= answer.length) {
+        setDisplayedText(answer.slice(0, currentIndex));
+        currentIndex += 3; // Fast, smooth typewriter reveal
+      } else {
+        clearInterval(interval);
+      }
+    }, 15);
+
+    return () => clearInterval(interval);
+  }, [answer, isOpen]);
+
+  return (
+    <p className="font-sans leading-relaxed text-zinc-300">
+      {displayedText}
+      {isOpen && displayedText.length < answer.length && (
+        <span className="ml-0.5 text-red-500 font-extrabold animate-[pulse_0.6s_infinite]">
+          _
+        </span>
+      )}
+    </p>
+  );
+}
+
 export function FaqSection() {
+  const [activeItem, setActiveItem] = useState<string | undefined>(undefined);
+
   return (
     <section 
       className="relative w-full py-24 sm:py-32 border-b border-white/10 z-0 -mt-6"
@@ -38,119 +75,107 @@ export function FaqSection() {
         clipPath: 'polygon(0 24px, calc(50% - 174px) 24px, calc(50% - 150px) 0, calc(50% + 150px) 0, calc(50% + 174px) 24px, 100% 24px, 100% 100%, calc(50% + 174px) 100%, calc(50% + 150px) calc(100% - 24px), calc(50% - 150px) calc(100% - 24px), calc(50% - 174px) 100%, 0 100%)'
       }}
     >
-      {/* Masked Glass Background */}
-      <div 
-        className="absolute inset-0 bg-white/[0.03] backdrop-blur-xl pointer-events-none z-0"
-        style={{
-          maskImage: 'url(#faq-hex-mask)',
-          WebkitMaskImage: 'url(#faq-hex-mask)',
-        }}
-      />
+      {/* Glass Backdrop */}
+      <div className="absolute inset-0 bg-white/[0.03] backdrop-blur-xl pointer-events-none z-0" />
 
-      <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-60 z-0" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="faq-hex-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="rgba(220,38,38,0.25)" />
-            <stop offset="100%" stopColor="rgba(220,38,38,0)" />
-          </linearGradient>
-          
-          <polygon id="faq-hex-base" points="-40,-69.28 40,-69.28 80,0 40,69.28 -40,69.28 -80,0" />
-          <polygon id="faq-hex-solid" points="-40,-69.28 40,-69.28 80,0 40,69.28 -40,69.28 -80,0" fill="url(#faq-hex-grad)" stroke="rgba(220,38,38,0.2)" strokeWidth="1" />
-          <polygon id="faq-hex-outline" points="-40,-69.28 40,-69.28 80,0 40,69.28 -40,69.28 -80,0" fill="none" stroke="rgba(220,38,38,0.4)" strokeWidth="1.5" />
-          <polygon id="faq-hex-thick" points="-40,-69.28 40,-69.28 80,0 40,69.28 -40,69.28 -80,0" fill="rgba(220,38,38,0.02)" stroke="rgba(220,38,38,0.8)" strokeWidth="3" />
-          <polygon id="faq-hex-dashed" points="-40,-69.28 40,-69.28 80,0 40,69.28 -40,69.28 -80,0" fill="none" stroke="rgba(220,38,38,0.6)" strokeWidth="2" strokeDasharray="10 10" />
-          
-          <g id="faq-node">
-            <circle r="12" fill="rgba(220,38,38,0.15)" />
-            <circle r="4" fill="#ef4444" />
-          </g>
-          
-          <g id="faq-cluster-mask-left">
-            <use href="#faq-hex-base" x="0" y="-138.56" />
-            <use href="#faq-hex-base" x="0" y="0" />
-            <use href="#faq-hex-base" x="0" y="138.56" />
-            <use href="#faq-hex-base" x="120" y="-69.28" />
-            <use href="#faq-hex-base" x="120" y="69.28" />
-            <use href="#faq-hex-base" x="240" y="0" />
-          </g>
-          
-          <g id="faq-cluster-mask-right">
-            <use href="#faq-hex-base" x="0" y="-138.56" />
-            <use href="#faq-hex-base" x="0" y="0" />
-            <use href="#faq-hex-base" x="0" y="138.56" />
-            <use href="#faq-hex-base" x="-120" y="-69.28" />
-            <use href="#faq-hex-base" x="-120" y="69.28" />
-            <use href="#faq-hex-base" x="-240" y="0" />
-          </g>
+      {/* Grid Overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] opacity-25 pointer-events-none z-0" />
 
-          <mask id="faq-hex-mask">
-            <rect width="100%" height="100%" fill="white" />
-            <use href="#faq-cluster-mask-left" x="0" y="50%" fill="black" className="invisible xl:visible" />
-            <use href="#faq-cluster-mask-right" x="100%" y="50%" fill="black" className="invisible xl:visible" />
-          </mask>
+      {/* Left/Right Telemetry Data on Wide Screens */}
+      <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-5 font-mono text-[9px] text-zinc-400 text-left border-l border-zinc-800/80 pl-4 pointer-events-none select-none opacity-80 z-10">
+        <div>
+          <span className="text-zinc-500 block">DB_QUERIES</span>
+          <span className="text-zinc-200">ACTIVE: 5 / 5 RESOLVED</span>
+        </div>
+        <div>
+          <span className="text-zinc-500 block">NODE_IDENT</span>
+          <span className="text-zinc-200">FAQ_GATEWAY_v1.99</span>
+        </div>
+        <div>
+          <span className="text-zinc-500 block">ENCRYPTION</span>
+          <span className="text-emerald-400 flex items-center gap-1 animate-pulse">
+            <span className="w-1 h-1 rounded-full bg-emerald-500" />
+            STABLE_SSL
+          </span>
+        </div>
+      </div>
 
-          <g id="faq-cluster-left">
-            <use href="#faq-hex-outline" x="0" y="-138.56" />
-            <use href="#faq-hex-thick" x="0" y="0" />
-            <use href="#faq-hex-solid" x="0" y="138.56" />
-            <use href="#faq-hex-solid" x="120" y="-69.28" />
-            <use href="#faq-hex-dashed" x="120" y="69.28" />
-            <use href="#faq-hex-outline" x="240" y="0" />
-            
-            <use href="#faq-node" x="80" y="0" />
-            <use href="#faq-node" x="40" y="-69.28" />
-            <use href="#faq-node" x="160" y="69.28" />
-            <use href="#faq-node" x="-40" y="69.28" />
-          </g>
-
-          <g id="faq-cluster-right">
-            <use href="#faq-hex-outline" x="0" y="-138.56" />
-            <use href="#faq-hex-thick" x="0" y="0" />
-            <use href="#faq-hex-solid" x="0" y="138.56" />
-            <use href="#faq-hex-solid" x="-120" y="-69.28" />
-            <use href="#faq-hex-dashed" x="-120" y="69.28" />
-            <use href="#faq-hex-outline" x="-240" y="0" />
-            
-            <use href="#faq-node" x="-80" y="0" />
-            <use href="#faq-node" x="-40" y="-69.28" />
-            <use href="#faq-node" x="-160" y="69.28" />
-            <use href="#faq-node" x="40" y="69.28" />
-          </g>
-        </defs>
-
-        <use href="#faq-cluster-left" x="0" y="50%" className="invisible xl:visible" />
-        <use href="#faq-cluster-right" x="100%" y="50%" className="invisible xl:visible" />
-      </svg>
+      <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-5 font-mono text-[9px] text-zinc-400 text-right border-r border-zinc-800/80 pr-4 pointer-events-none select-none opacity-80 z-10">
+        <div>
+          <span className="text-zinc-500 block">QUERY_RATE</span>
+          <span className="text-zinc-200">100% SATISFACTORY</span>
+        </div>
+        <div>
+          <span className="text-zinc-500 block">INDEX_LOAD</span>
+          <span className="text-zinc-200">0.02 MS SEARCH TIME</span>
+        </div>
+        <div>
+          <span className="text-zinc-500 block">SECTOR_LATENCY</span>
+          <span className="text-zinc-200">12 MS RESPONSE</span>
+        </div>
+      </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10">
         
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-wider font-sans mb-2">
+        <div className="text-center mb-16 relative">
+          <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-48 h-[1px] bg-gradient-to-r from-transparent via-red-500/25 to-transparent" />
+          
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-zinc-950/80 border border-red-500/20 text-red-500/80 text-[9px] font-mono tracking-[0.25em] uppercase mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+            ITRP CENTRAL DIRECTORY GATEWAY
+          </div>
+          
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-widest font-mono mb-2 uppercase">
             Frequently Asked
           </h2>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-700 to-red-600 tracking-wider font-sans drop-shadow-[0_0_15px_rgba(220,38,38,0.4)]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-600 to-red-700 tracking-widest font-mono drop-shadow-[0_0_15px_rgba(220,38,38,0.3)] uppercase">
             Questions
           </h2>
         </div>
 
-        {/* Accordion */}
-        <div className="w-full">
-          <Accordion type="single" collapsible className="w-full space-y-2">
-            {faqs.map((faq, index) => (
-              <AccordionItem 
-                key={index} 
-                value={`item-${index}`}
-                className="border-b border-white/5 bg-transparent"
-              >
-                <AccordionTrigger className="text-sm sm:text-base font-bold text-gray-200 hover:text-red-500 hover:no-underline transition-colors text-left py-6">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-gray-400 text-sm sm:text-base leading-relaxed pb-6">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
+        {/* Accordions */}
+        <div className="w-full max-w-3xl mx-auto">
+          <Accordion 
+            type="single" 
+            collapsible 
+            value={activeItem}
+            onValueChange={(val) => setActiveItem(val || undefined)}
+            className="w-full space-y-4"
+          >
+            {faqs.map((faq, index) => {
+              const isOpen = activeItem === `item-${index}`;
+              return (
+                <AccordionItem 
+                  key={index} 
+                  value={`item-${index}`}
+                  className="border border-white/5 bg-zinc-950/20 hover:bg-zinc-950/40 hover:border-red-500/25 rounded-xl px-5 py-2 transition-all duration-300 relative group"
+                  style={{
+                    boxShadow: `0 4px 20px rgba(0, 0, 0, 0.4)`
+                  }}
+                >
+                  {/* Corner Tick Accent */}
+                  <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/10 group-hover:border-red-500/50 transition-colors" />
+                  <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/10 group-hover:border-red-500/50 transition-colors" />
+
+                  <AccordionTrigger className="text-xs sm:text-sm font-bold text-zinc-300 hover:text-white hover:no-underline transition-colors text-left py-4 flex items-center justify-between gap-4 font-mono">
+                    <div className="flex items-center gap-3">
+                      <span className="text-[9px] font-mono text-zinc-500 group-hover:text-red-400 border border-zinc-800/80 px-2 py-0.5 rounded bg-zinc-950/60 transition-colors">
+                        SYS_Q_0{index + 1}
+                      </span>
+                      <span>{faq.question}</span>
+                    </div>
+                  </AccordionTrigger>
+                  
+                  <AccordionContent className="text-zinc-400 text-[11px] sm:text-xs leading-relaxed pb-4 pt-2 border-t border-white/5 relative">
+                    <div className="flex gap-2">
+                      <span className="text-red-500 font-mono select-none shrink-0 font-bold">» RESP:</span>
+                      <TypewriterAnswer answer={faq.answer} isOpen={isOpen} />
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              );
+            })}
           </Accordion>
         </div>
 

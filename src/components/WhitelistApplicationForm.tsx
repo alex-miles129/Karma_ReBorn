@@ -100,6 +100,12 @@ export function WhitelistApplicationForm({ disabled = false, cooldownRemaining =
   useEffect(() => {
     if (quizState !== 'quiz') return;
 
+    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 1024;
+    if (isMobileDevice) {
+      console.log("Mobile device detected: bypassing strict anti-cheat listeners.");
+      return;
+    }
+
     const handleScreenChange = () => {
       const isFullscreen = !!(
         document.fullscreenElement ||
@@ -207,17 +213,20 @@ export function WhitelistApplicationForm({ disabled = false, cooldownRemaining =
       setSelectedOption(null);
       setTerminated(false);
 
-      const element = document.documentElement;
-      try {
-        if (element.requestFullscreen) {
-          await element.requestFullscreen();
-        } else if ((element as any).webkitRequestFullscreen) {
-          await (element as any).webkitRequestFullscreen();
-        } else if ((element as any).msRequestFullscreen) {
-          await (element as any).msRequestFullscreen();
+      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 1024;
+      if (!isMobileDevice) {
+        const element = document.documentElement;
+        try {
+          if (element.requestFullscreen) {
+            await element.requestFullscreen();
+          } else if ((element as any).webkitRequestFullscreen) {
+            await (element as any).webkitRequestFullscreen();
+          } else if ((element as any).msRequestFullscreen) {
+            await (element as any).msRequestFullscreen();
+          }
+        } catch (fsErr) {
+          console.warn("Could not enter fullscreen mode:", fsErr);
         }
-      } catch (fsErr) {
-        console.warn("Could not enter fullscreen mode:", fsErr);
       }
 
       // Add a slight delay before binding screen monitor listeners
@@ -377,11 +386,11 @@ export function WhitelistApplicationForm({ disabled = false, cooldownRemaining =
       
       <DialogContent 
         className={cn(
-          "max-w-2xl bg-zinc-950 border-zinc-800/80 text-white rounded-xl shadow-2xl transition-all duration-300",
-          quizState === 'quiz' ? "p-8 max-w-3xl h-[85vh] flex flex-col justify-between" : "p-6"
+          "w-[94vw] max-w-2xl bg-zinc-950 border-zinc-800/80 text-white rounded-xl shadow-2xl transition-all duration-300 max-h-[95vh] overflow-y-auto",
+          quizState === 'quiz' ? "p-4 sm:p-8 sm:max-w-3xl h-[90vh] sm:h-[85vh] flex flex-col justify-between" : "p-6"
         )}
         onPointerDownOutside={(e) => {
-          if (quizState === 'quiz') e.preventDefault();
+          e.preventDefault();
         }}
         onEscapeKeyDown={(e) => {
           if (quizState === 'quiz') e.preventDefault();
@@ -489,7 +498,7 @@ export function WhitelistApplicationForm({ disabled = false, cooldownRemaining =
                   </div>
                 </div>
                 <Badge variant="destructive" className="bg-red-950/60 border border-red-800/40 text-red-200 text-xs px-2.5 py-1 flex items-center gap-1.5 animate-pulse">
-                  <Tv className="w-3.5 h-3.5" /> Full Screen Monitored
+                  <Tv className="w-3.5 h-3.5" /> {typeof window !== 'undefined' && (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 1024) ? "Mobile Session" : "Full Screen Monitored"}
                 </Badge>
               </div>
               <Progress 
@@ -499,8 +508,8 @@ export function WhitelistApplicationForm({ disabled = false, cooldownRemaining =
             </div>
 
             {/* Question section */}
-            <div className="my-auto py-8">
-              <h2 className="text-xl md:text-2xl font-bold text-white leading-snug mb-8">
+            <div className="my-auto py-4 sm:py-8 overflow-y-auto flex-1 max-h-[60vh] pr-1">
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white leading-snug mb-4 sm:mb-8">
                 {questions[currentQuestionIndex].question}
               </h2>
 

@@ -209,7 +209,7 @@ export function CtaSection() {
           </div>
 
           {/* Left/Right Telemetry Data inside the panel on Desktop */}
-          <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-5 font-mono text-[9px] text-zinc-400 text-left border-l border-zinc-800/80 pl-4">
+          <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-5 font-mono text-[9px] text-zinc-400 text-left border-l border-zinc-800/80 pl-4">
             <div>
               <span className="text-zinc-500 block">SECTOR_COORD</span>
               <span className="text-zinc-200">28° 37' 0" N / 77° 12' 0" E</span>
@@ -227,7 +227,7 @@ export function CtaSection() {
             </div>
           </div>
 
-          <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-5 font-mono text-[9px] text-zinc-400 text-right border-r border-zinc-800/80 pr-4">
+          <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-5 font-mono text-[9px] text-zinc-400 text-right border-r border-zinc-800/80 pr-4">
             <div>
               <span className="text-zinc-500 block">PEAK_BANDWIDTH</span>
               <span className="text-zinc-200">99.8% RESPONSE</span>

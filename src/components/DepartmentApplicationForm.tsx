@@ -134,7 +134,10 @@ export function DepartmentApplicationForm({ config }: DepartmentApplicationFormP
           Fill Form
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-3xl max-h-[90vh]">
+      <DialogContent 
+        className="w-[94vw] sm:max-w-3xl max-h-[95vh] overflow-y-auto sm:overflow-visible bg-zinc-950 border-zinc-800/80 text-white rounded-xl"
+        onPointerDownOutside={(e) => e.preventDefault()}
+      >
         <DialogHeader>
           <DialogTitle className="text-2xl">{config.title}</DialogTitle>
           <DialogDescription>

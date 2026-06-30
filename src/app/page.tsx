@@ -11,7 +11,7 @@ export default function HomePage() {
     <>
       <ScrollProgressBar />
       <SiteHeader />
-      <main className="relative">
+      <main className="relative overflow-x-hidden w-full">
         <HeroSection />
         <StoreSection />
         <CtaSection />

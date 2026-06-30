@@ -82,7 +82,7 @@ export function FaqSection() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] opacity-25 pointer-events-none z-0" />
 
       {/* Left/Right Telemetry Data on Wide Screens */}
-      <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-5 font-mono text-[9px] text-zinc-400 text-left border-l border-zinc-800/80 pl-4 pointer-events-none select-none opacity-80 z-10">
+      <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-5 font-mono text-[9px] text-zinc-400 text-left border-l border-zinc-800/80 pl-4 pointer-events-none select-none opacity-80 z-10">
         <div>
           <span className="text-zinc-500 block">DB_QUERIES</span>
           <span className="text-zinc-200">ACTIVE: 5 / 5 RESOLVED</span>
@@ -100,7 +100,7 @@ export function FaqSection() {
         </div>
       </div>
 
-      <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-5 font-mono text-[9px] text-zinc-400 text-right border-r border-zinc-800/80 pr-4 pointer-events-none select-none opacity-80 z-10">
+      <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-5 font-mono text-[9px] text-zinc-400 text-right border-r border-zinc-800/80 pr-4 pointer-events-none select-none opacity-80 z-10">
         <div>
           <span className="text-zinc-500 block">QUERY_RATE</span>
           <span className="text-zinc-200">100% SATISFACTORY</span>

@@ -18,7 +18,7 @@ const tiers: Tier[] = [
     features: [
       '+25 Queue Priority',
       '(stacks with other sources)',
-      'Silver member badge on Discord & the Prodigy website',
+      'Silver member badge on Discord & the ITRP website',
     ],
   },
   {
@@ -29,7 +29,7 @@ const tiers: Tier[] = [
     features: [
       '+40 Queue Priority',
       '(stacks with other sources)',
-      'Gold member badge on Discord & the Prodigy website',
+      'Gold member badge on Discord & the ITRP website',
       '1 Priority Application Review per month',
       '(appeals & character requests, 7-day turnaround)',
     ],
@@ -42,7 +42,7 @@ const tiers: Tier[] = [
     features: [
       '+60 Queue Priority',
       '(stacks with other sources)',
-      'Emerald member badge on Discord & the Prodigy website',
+      'Emerald member badge on Discord & the ITRP website',
       '1 Priority Application Review per month',
       '(appeals & character requests, 7-day turnaround)',
     ],
@@ -55,7 +55,7 @@ const tiers: Tier[] = [
     features: [
       '+80 Queue Priority',
       '(stacks with other sources)',
-      'Platinum member badge on Discord & the Prodigy website',
+      'Platinum member badge on Discord & the ITRP website',
       '1 Priority Application Review per month',
       '(appeals & character requests, 7-day turnaround)',
     ],
@@ -68,7 +68,7 @@ const tiers: Tier[] = [
     features: [
       '+140 Queue Priority',
       '(stacks with other sources)',
-      'Diamond member badge on Discord & the Prodigy website',
+      'Diamond member badge on Discord & the ITRP website',
       '1 Priority Application Review per month',
       '(appeals & character requests, 7-day turnaround)',
     ],
@@ -81,7 +81,7 @@ const tiers: Tier[] = [
     features: [
       '+250 Queue Priority',
       '(stacks with other sources)',
-      'Onyx member badge on Discord & the Prodigy website',
+      'Onyx member badge on Discord & the ITRP website',
       'Unlimited Priority Application Reviews',
       '(appeals & character requests, 7-day turnaround)',
     ],
